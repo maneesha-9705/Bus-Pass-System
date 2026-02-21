@@ -25,18 +25,11 @@ body {
     radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 20%),
     radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.15) 0%, transparent 20%);
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
 }
 
 #root {
   width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  min-height: 100vh;
 }
 
 button {
@@ -72,7 +65,7 @@ input:focus {
   border-color: var(--primary);
 }
 
-/* Glassmorphism Card */
+/* Glassmorphism Card (Kept for other components like OTP page) */
 .glass-panel {
   background: var(--card-bg);
   backdrop-filter: blur(12px);
@@ -85,7 +78,8 @@ input:focus {
 .container {
   width: 100%;
   max-width: 1200px;
-  height: 90vh;
+  min-height: 90vh;
+  /* Changed from height to min-height for flow */
   display: flex;
   flex-direction: column;
   position: relative;

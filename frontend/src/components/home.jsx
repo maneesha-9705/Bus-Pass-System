@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from './header';
 import './home.css';
 
 const Home = () => {
+  const [showForms, setShowForms] = useState(false);
+
+  const handleFormsClick = () => {
+    setShowForms(!showForms);
+  };
   return (
     <div className="home-page-container">
       <div className="top-header-wrapper">
@@ -45,24 +50,63 @@ const Home = () => {
       </div>
 
       <div className="home-content">
-        <h2 className="welcome-title">Welcome to Bus Pass System</h2>
+        <h2 className="welcome-title">Welcome to Digital Bus Pass System</h2>
         <p className="welcome-subtitle">Get your passes easily, safely, and efficiently.</p>
 
         <div className="action-cards">
           <div className="action-card">
-            <div className="icon">🎫</div>
-            <h3>Book a Pass</h3>
-            <p>Apply for a new student, general, or route-specific bus pass.</p>
+            <div className="icon"><img src="/Student.svg" alt="Student" /></div>
+            <h3>Student</h3>
+            <p>Above SSC & Below SSC</p>
           </div>
           <div className="action-card">
-            <div className="icon">🔄</div>
-            <h3>Renew Pass</h3>
-            <p>Quickly renew your existing passes before they expire.</p>
+            <div className="icon"><img src="/emp.jpg" alt="Employee" /></div>
+            <h3>Employee</h3>
+            <p>Government and Non-Government</p>
           </div>
           <div className="action-card">
-            <div className="icon">🚌</div>
-            <h3>View Routes</h3>
-            <p>Check the latest schedules, timings, and routes.</p>
+            <div className="icon"><img src="/citizen.jpg" alt="Citizens" /></div>
+            <h3>Citizens</h3>
+            <p>General citizens passes</p>
+          </div>
+          <div className="action-card">
+            <div className="icon"><img src="/Update.svg" alt="Update Details" /></div>
+            <h3>Update Details</h3>
+            <p>Modify basic information</p>
+          </div>
+          <div className="action-card">
+            <div className="icon"><img src="/pay.svg" alt="Payment" /></div>
+            <h3>Payment</h3>
+            <p>Pre & Present payments</p>
+          </div>
+          <div className="action-card">
+            <div className="icon"><img src="/trace.webp" alt="Trace Details" /></div>
+            <h3>Trace Details</h3>
+            <p>Track your pass status</p>
+          </div>
+          <div className="action-card" onClick={handleFormsClick}>
+            <div className="icon"><img src="/dow.svg" alt="Download Forms" /></div>
+            <h3>Download Forms</h3>
+            {showForms ? (
+              <div className="download-links">
+                <a href="/belowSSCApplicationForm.pdf" download="Below_SSC_Form.pdf" onClick={(e) => e.stopPropagation()}>Below SSC</a>
+                <a href="/aboveSSCApplicationForm.pdf" download="Above_SSC_Form.pdf" onClick={(e) => e.stopPropagation()}>Above SSC</a>
+                <a href="/NGOApplicationForm.pdf" download="NGO_Application.pdf" onClick={(e) => e.stopPropagation()}>NGO Application</a>
+                <a href="/JournalistForm.pdf" download="Journalist_Form.pdf" onClick={(e) => e.stopPropagation()}>Journalist Form</a>
+              </div>
+            ) : (
+              <p>Click to view and download applications</p>
+            )}
+          </div>
+          <div className="action-card">
+            <div className="icon"><img src="/pass.png" alt="My Pass" /></div>
+            <h3>My Pass</h3>
+            <p>View active passes</p>
+          </div>
+          <div className="action-card">
+            <div className="icon"><img src="/renew.webp" alt="Renewal Pass" /></div>
+            <h3>Renewal Pass</h3>
+            <p>Below SSC & Above SSC</p>
           </div>
         </div>
       </div>

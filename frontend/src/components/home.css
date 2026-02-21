@@ -131,10 +131,9 @@
 
 /* Cards layout */
 .action-cards {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
-  flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -158,8 +157,18 @@
 }
 
 .action-card .icon {
-  font-size: 3rem;
-  margin-bottom: 20px;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-card .icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .action-card h3 {
@@ -171,4 +180,30 @@
 .action-card p {
   color: #64748b;
   line-height: 1.6;
+}
+
+.download-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.download-links a {
+  text-decoration: none;
+  color: #6366f1;
+  /* Indigo color for contrast */
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.download-links a:hover {
+  background-color: #e0e7ff;
+  border-color: #6366f1;
+  color: #4338ca;
 }

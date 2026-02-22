@@ -5,6 +5,7 @@ import AboveSSCForm from "./components/AboveSSCForm";
 import BelowSSCForm from "./components/BelowSSCForm";
 import CitizenForm from "./components/CitizenForm";
 import TraceDetails from "./components/TraceDetails";
+import UpdateDetails from "./components/UpdateDetails";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/below-ssc" element={<BelowSSCForm />} />
       <Route path="/citizen-form" element={<CitizenForm />} />
       <Route path="/trace-details" element={<TraceDetails />} />
+      <Route path="/update-details" element={<UpdateDetails />} />
     </Routes>
   );
 }

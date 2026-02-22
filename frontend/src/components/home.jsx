@@ -11,6 +11,14 @@ const Home = () => {
   const handleFormsClick = () => {
     setShowForms(!showForms);
   };
+
+  const handleCitizenClick = () => {
+    window.open('/citizen-form', '_blank');
+  };
+
+  const handleTraceDetailsClick = () => {
+    window.open('/trace-details', '_blank');
+  };
   return (
     <div className="home-page-container">
       <div className="top-header-wrapper">
@@ -64,7 +72,7 @@ const Home = () => {
             <h3>Employee</h3>
             <p>Government and Non-Government</p>
           </div>
-          <div className="action-card">
+          <div className="action-card" onClick={handleCitizenClick}>
             <div className="icon"><img src="/citizen.jpg" alt="Citizens" /></div>
             <h3>Citizens</h3>
             <p>General citizens passes</p>
@@ -79,7 +87,7 @@ const Home = () => {
             <h3>Payment</h3>
             <p>Pre & Present payments</p>
           </div>
-          <div className="action-card">
+          <div className="action-card" onClick={handleTraceDetailsClick}>
             <div className="icon"><img src="/trace.webp" alt="Trace Details" /></div>
             <h3>Trace Details</h3>
             <p>Track your pass status</p>

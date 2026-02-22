@@ -19,6 +19,11 @@ const Home = () => {
   const handleTraceDetailsClick = () => {
     window.open('/trace-details', '_blank');
   };
+
+  const handleUpdateDetailsClick = () => {
+    window.open('/update-details', '_blank');
+  };
+
   return (
     <div className="home-page-container">
       <div className="top-header-wrapper">
@@ -77,7 +82,7 @@ const Home = () => {
             <h3>Citizens</h3>
             <p>General citizens passes</p>
           </div>
-          <div className="action-card">
+          <div className="action-card" onClick={handleUpdateDetailsClick}>
             <div className="icon"><img src="/Update.svg" alt="Update Details" /></div>
             <h3>Update Details</h3>
             <p>Modify basic information</p>

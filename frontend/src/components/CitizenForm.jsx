@@ -1,7 +1,47 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import './CitizenForm.css';
 
 const CitizenForm = () => {
+    const [photo, setPhoto] = useState(null);
+    const [showCamera, setShowCamera] = useState(false);
+    const videoRef = useRef(null);
+    const canvasRef = useRef(null);
+    const fileInputRef = useRef(null);
+
+    const handleFileUpload = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => setPhoto(reader.result);
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const startCamera = async () => {
+        setShowCamera(true);
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            if (videoRef.current) videoRef.current.srcObject = stream;
+        } catch (err) {
+            alert("Could not access camera");
+            setShowCamera(false);
+        }
+    };
+
+    const capturePhoto = () => {
+        const context = canvasRef.current.getContext('2d');
+        context.drawImage(videoRef.current, 0, 0, 320, 240);
+        setPhoto(canvasRef.current.toDataURL('image/png'));
+        stopCamera();
+    };
+
+    const stopCamera = () => {
+        if (videoRef.current?.srcObject) {
+            videoRef.current.srcObject.getTracks().forEach(track => track.stop());
+        }
+        setShowCamera(false);
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         alert('Application Submitted Successfully!');
@@ -97,9 +137,25 @@ const CitizenForm = () => {
                                 <label>Upload Aadhaar Proof</label>
                                 <input type="file" required />
                             </div>
-                            <div className="form-group file-upload">
-                                <label>Upload Photograph</label>
-                                <input type="file" required />
+                            <div className="form-group photo-upload-container" style={{ gridColumn: '1 / -1', marginTop: '10px' }}>
+                                <label style={{ marginBottom: '15px' }}>Upload Photograph</label>
+                                <div className="photo-box-wrapper">
+                                    <span className="dim-label dim-width">Photo Width: 3.5cms</span>
+                                    <div className="photo-box">
+                                        {photo ? <img src={photo} alt="Preview" /> : <img src="photo-spec.png" alt="No photo" style={{ opacity: 0.2 }} />}
+                                    </div>
+                                    <span className="dim-label dim-height">Photo Height: 4.5cms</span>
+                                </div>
+                                <button type="button" className="photo-action-btn" onClick={() => fileInputRef.current.click()}>
+                                    Upload Photo / Capture Photo *
+                                </button>
+                                <button type="button" style={{ marginTop: '5px', fontSize: '0.8rem', background: 'none', border: 'none', color: '#6366f1', cursor: 'pointer', textDecoration: 'underline' }} onClick={startCamera}>
+                                    (Use Camera Instead)
+                                </button>
+                                <input type="file" ref={fileInputRef} hidden accept="image/*" onChange={handleFileUpload} />
+                                <p className="photo-help-text">
+                                    Upload JPEG format file. Size should be less than 1MB
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -150,6 +206,19 @@ const CitizenForm = () => {
                     </div>
                 </form>
             </div>
+
+            {showCamera && (
+                <div className="camera-modal">
+                    <div className="camera-content">
+                        <video ref={videoRef} autoPlay style={{ width: '100%', borderRadius: '8px' }} />
+                        <canvas ref={canvasRef} width="320" height="240" style={{ display: 'none' }} />
+                        <div className="camera-actions">
+                            <button type="button" onClick={capturePhoto} className="capture-btn">Capture</button>
+                            <button type="button" onClick={stopCamera} className="cancel-btn">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

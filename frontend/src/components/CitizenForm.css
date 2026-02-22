@@ -191,3 +191,147 @@
         padding: 15px;
     }
 }
+
+/* Photo Section Styles */
+.photo-upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: #fff;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.photo-box-wrapper {
+    position: relative;
+    padding: 20px;
+}
+
+.photo-box {
+    width: 132px;
+    height: 170px;
+    border: 2px solid #333;
+    background-color: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.dim-label {
+    position: absolute;
+    font-size: 0.75rem;
+    color: #475569;
+    font-weight: 600;
+}
+
+.dim-width {
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.dim-height {
+    right: -55px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    white-space: nowrap;
+}
+
+.photo-action-btn {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: all 0.2s ease;
+}
+
+.photo-action-btn:hover {
+    background-color: #e2e8f0;
+}
+
+.photo-help-text {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
+/* Camera Modal */
+.camera-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.camera-content {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.camera-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.capture-btn {
+    background-color: #10b981;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+.capture-btn:hover {
+    background-color: #059669;
+}
+
+.cancel-btn {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+.cancel-btn:hover {
+    background-color: #dc2626;
+}

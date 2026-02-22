@@ -1,11 +1,13 @@
 import React from "react";
 import "./header.css";
- // download logo and keep in assets
+import { useTheme } from "../context/ThemeContext";
+// download logo and keep in assets
 
 function Header() {
+  const { theme, toggleTheme } = useTheme();
   return (
     <div className="apsrtc-top-header">
-      
+
       {/* Left Section */}
       <div className="left-section">
         <img src="/logo.png" alt="APSRTC Logo" className="apsrtc-logo" />
@@ -22,6 +24,9 @@ function Header() {
 
       {/* Right Section */}
       <div className="right-section">
+        <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle Theme">
+          {theme === 'light' ? '🌙' : '☀️'}
+        </button>
         <div className="support-icon">🎧</div>
         <div>
           <p className="support-text">(24/7 Customer Support)</p>

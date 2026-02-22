@@ -1,11 +1,8 @@
-/* We target a specific container to override global dark theme styles */
 .home-page-container {
   width: 100vw;
   min-height: 100vh;
-  background-color: #ffffff;
-  /* Explicitly set white background */
-  color: #333333;
-  /* Dark text for contrast */
+  background-color: var(--bg-color);
+  color: var(--text-primary);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -113,14 +110,14 @@
 
 .welcome-title {
   font-size: 2.8rem;
-  color: #1e293b;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
   font-weight: 800;
 }
 
 .welcome-subtitle {
   font-size: 1.2rem;
-  color: #64748b;
+  color: var(--text-secondary);
   margin-bottom: 50px;
 }
 
@@ -136,11 +133,11 @@
 .action-card {
   flex: 1;
   min-width: 250px;
-  background: white;
+  background: var(--card-bg);
   border-radius: 12px;
   padding: 30px 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e2e8f0;
+  box-shadow: var(--glass-shadow);
+  border: 1px solid var(--glass-border);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
@@ -148,7 +145,7 @@
 .action-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  border-color: #8b5cf6;
+  border-color: var(--primary);
 }
 
 .action-card .icon {
@@ -168,12 +165,12 @@
 
 .action-card h3 {
   font-size: 1.5rem;
-  color: #0f172a;
+  color: var(--text-primary);
   margin-bottom: 15px;
 }
 
 .action-card p {
-  color: #64748b;
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
@@ -186,26 +183,55 @@
 
 .download-links a {
   text-decoration: none;
-  color: #6366f1;
+  color: var(--primary);
   /* Indigo color for contrast */
   font-size: 0.95rem;
   font-weight: 500;
   padding: 8px 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--glass-border);
   border-radius: 6px;
-  background-color: #f8fafc;
+  background-color: var(--card-bg);
   transition: all 0.2s ease;
 }
 
 .download-links a:hover {
-  background-color: #e0e7ff;
-  border-color: #6366f1;
-  color: #4338ca;
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.student-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #64748b;
+  margin-top: 5px;
+}
+
+.card-link {
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.card-link:hover {
+  background-color: var(--glass-border);
+  color: var(--primary-hover);
+  transform: translateY(-5px);
+}
+
+.separator {
+  color: #94a3b8;
+  font-weight: 300;
 }
 
 /* ----- FOOTER ----- */
 .home-footer {
-  background-color: #e31e24;
+  background-color: var(--nav-bg);
   color: #f8fafc;
   padding: 40px 20px;
   text-align: center;

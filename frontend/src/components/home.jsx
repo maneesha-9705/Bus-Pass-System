@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Header from './header';
 import './home.css';
-import { useState } from 'react';
+
 
 const Home = () => {
   const [showForms, setShowForms] = useState(false);

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Header from './header';
 import './home.css';
+import { useState } from 'react';
 
 const Home = () => {
   const [showForms, setShowForms] = useState(false);
@@ -18,34 +19,27 @@ const Home = () => {
         <div className="carousel-track">
           {/* Beautiful Bus & Transport Imagery via Unsplash */}
           <div className="carousel-slide">
-            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200&auto=format&fit=crop" alt="Bus 1" />
+            <img src="/homebg.png" alt="Bus 1" />
             <div className="carousel-overlay">
               <h2>Safe & Reliable Journey</h2>
               <p>Experience comfort with every ride.</p>
             </div>
           </div>
           <div className="carousel-slide">
-            <img src="https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?q=80&w=1200&auto=format&fit=crop" alt="Bus 2" />
+            <img src="/home2.png" alt="Bus 2" />
             <div className="carousel-overlay">
               <h2>Express Bus Services</h2>
               <p>Connecting cities, bringing people together.</p>
             </div>
           </div>
           <div className="carousel-slide">
-            <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?q=80&w=1200&auto=format&fit=crop" alt="Bus 3" />
+            <img src="/home1.jpg" alt="Bus 3" />
             <div className="carousel-overlay">
               <h2>Easy Pass Booking</h2>
               <p>Get your passes digitally in seconds.</p>
             </div>
           </div>
-          {/* Duplicate the first slide for seamless animation looping */}
-          <div className="carousel-slide">
-            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200&auto=format&fit=crop" alt="Bus 1" />
-            <div className="carousel-overlay">
-              <h2>Safe & Reliable Journey</h2>
-              <p>Experience comfort with every ride.</p>
-            </div>
-          </div>
+
         </div>
       </div>
 
@@ -110,8 +104,20 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      {/* Footer Section */}
+      <footer className="home-footer">
+        <div className="footer-content">
+          <h4>Digital Bus Pass System</h4>
+          <p>&copy; {new Date().getFullYear()} Digital Bus Pass System. All rights reserved.</p>
+          <div className="footer-links">
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
-
-export default Home
+export default Home;

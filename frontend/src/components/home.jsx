@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import Header from './header';
 import './home.css';
 
 
 const Home = () => {
+  const navigate = useNavigate();
   const [showForms, setShowForms] = useState(false);
 
   const handleFormsClick = () => {
@@ -50,8 +52,12 @@ const Home = () => {
         <div className="action-cards">
           <div className="action-card">
             <div className="icon"><img src="/Student.svg" alt="Student" /></div>
-            <h3>Student</h3>
-            <p>Above SSC & Below SSC</p>
+            <h3>Fresh Registration</h3>
+            <div className="student-links">
+              <span onClick={() => navigate('/above-ssc')} className="card-link">Above SSC</span>
+              <span className="separator">&</span>
+              <span onClick={() => navigate('/below-ssc')} className="card-link">Below SSC</span>
+            </div>
           </div>
           <div className="action-card">
             <div className="icon"><img src="/emp.jpg" alt="Employee" /></div>

@@ -146,7 +146,7 @@
 }
 
 .action-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
   border-color: #8b5cf6;
 }
@@ -201,6 +201,36 @@
   background-color: #e0e7ff;
   border-color: #6366f1;
   color: #4338ca;
+}
+
+.student-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #64748b;
+  margin-top: 5px;
+}
+
+.card-link {
+  color: #6366f1;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 4px 8px;
+  border-radius: 4px;
+
+}
+
+.card-link:hover {
+  background-color: #f1f5f9;
+  color: #4338ca;
+  transform: translateY(-5px);
+}
+
+.separator {
+  color: #94a3b8;
+  font-weight: 300;
 }
 
 /* ----- FOOTER ----- */

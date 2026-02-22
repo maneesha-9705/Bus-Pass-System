@@ -3,13 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import Header from './header';
 import './home.css';
 
-
 const Home = () => {
   const navigate = useNavigate();
   const [showForms, setShowForms] = useState(false);
+  const [showEmployeeLinks, setShowEmployeeLinks] = useState(false);
+  const [showStudentLinks, setShowStudentLinks] = useState(false);
 
   const handleFormsClick = () => {
     setShowForms(!showForms);
+  };
+
+  const handleEmployeeClick = () => {
+    setShowEmployeeLinks(!showEmployeeLinks);
+  };
+
+  const handleStudentClick = () => {
+    setShowStudentLinks(!showStudentLinks);
   };
 
   const handleCitizenClick = () => {
@@ -63,19 +72,31 @@ const Home = () => {
         <p className="welcome-subtitle">Get your passes easily, safely, and efficiently.</p>
 
         <div className="action-cards">
-          <div className="action-card">
+          <div className="action-card" onClick={handleStudentClick}>
             <div className="icon"><img src="/Student.svg" alt="Student" /></div>
-            <h3>Fresh Registration</h3>
-            <div className="student-links">
-              <span onClick={() => navigate('/above-ssc')} className="card-link">Above SSC</span>
-              <span className="separator">&</span>
-              <span onClick={() => navigate('/below-ssc')} className="card-link">Below SSC</span>
-            </div>
+            <h3>Students</h3>
+            {showStudentLinks ? (
+              <div className="download-links">
+                <a href="#" onClick={(e) => { e.preventDefault(); e.stopPropagation(); navigate('/above-ssc'); }}>Above SSC</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); e.stopPropagation(); navigate('/below-ssc'); }}>Below SSC</a>
+              </div>
+            ) : (
+              <p>Above SSC & Below SSC</p>
+            )}
           </div>
-          <div className="action-card">
+          <div className="action-card" onClick={handleEmployeeClick}>
             <div className="icon"><img src="/emp.jpg" alt="Employee" /></div>
             <h3>Employee</h3>
-            <p>Government and Non-Government</p>
+            {showEmployeeLinks ? (
+              <div className="download-links">
+                <a href="#" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open('/journalist-form', '_blank'); }}>Journalist Form</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open('/ngo-form', '_blank'); }}>NGO Application Form</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open('/gov-emp-form', '_blank'); }}>Govt Employee Form</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open('/non-gov-emp-form', '_blank'); }}>Non-Govt Employee Form</a>
+              </div>
+            ) : (
+              <p>Government and Non-Government</p>
+            )}
           </div>
           <div className="action-card" onClick={handleCitizenClick}>
             <div className="icon"><img src="/citizen.jpg" alt="Citizens" /></div>

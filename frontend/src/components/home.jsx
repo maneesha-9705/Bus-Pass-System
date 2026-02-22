@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Header from './header';
 import './home.css';
+import { useLanguage } from '../context/LanguageContext';
 
 const Home = () => {
   const navigate = useNavigate();
   const [showForms, setShowForms] = useState(false);
-  const [showEmployeeLinks, setShowEmployeeLinks] = useState(false);
-  const [showStudentLinks, setShowStudentLinks] = useState(false);
+  const { t } = useLanguage();
 
   const handleFormsClick = () => {
     setShowForms(!showForms);
@@ -68,79 +68,67 @@ const Home = () => {
       </div>
 
       <div className="home-content">
-        <h2 className="welcome-title">Welcome to Digital Bus Pass System</h2>
-        <p className="welcome-subtitle">Get your passes easily, safely, and efficiently.</p>
+        <h2 className="welcome-title">{t('welcome_title')}</h2>
+        <p className="welcome-subtitle">{t('welcome_subtitle')}</p>
 
         <div className="action-cards">
           <div className="action-card" onClick={handleStudentClick}>
             <div className="icon"><img src="/Student.svg" alt="Student" /></div>
-            <h3>Students</h3>
-            {showStudentLinks ? (
-              <div className="download-links">
-                <a href="#" onClick={(e) => { e.preventDefault(); e.stopPropagation(); navigate('/above-ssc'); }}>Above SSC</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); e.stopPropagation(); navigate('/below-ssc'); }}>Below SSC</a>
-              </div>
-            ) : (
-              <p>Above SSC & Below SSC</p>
-            )}
+            <h3>{t('fresh_registration')}</h3>
+            <div className="student-links">
+              <span onClick={() => navigate('/above-ssc')} className="card-link">{t('above_ssc')}</span>
+              <span className="separator">&</span>
+              <span onClick={() => navigate('/below-ssc')} className="card-link">{t('below_ssc')}</span>
+            </div>
           </div>
           <div className="action-card" onClick={handleEmployeeClick}>
             <div className="icon"><img src="/emp.jpg" alt="Employee" /></div>
-            <h3>Employee</h3>
-            {showEmployeeLinks ? (
-              <div className="download-links">
-                <a href="#" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open('/journalist-form', '_blank'); }}>Journalist Form</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open('/ngo-form', '_blank'); }}>NGO Application Form</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open('/gov-emp-form', '_blank'); }}>Govt Employee Form</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open('/non-gov-emp-form', '_blank'); }}>Non-Govt Employee Form</a>
-              </div>
-            ) : (
-              <p>Government and Non-Government</p>
-            )}
+            <h3>{t('employee')}</h3>
+            <p>{t('government_non_government')}</p>
           </div>
           <div className="action-card" onClick={handleCitizenClick}>
             <div className="icon"><img src="/citizen.jpg" alt="Citizens" /></div>
-            <h3>Citizens</h3>
-            <p>General citizens passes</p>
+            <h3>{t('citizens')}</h3>
+            <p>{t('general_citizens_passes')}</p>
           </div>
           <div className="action-card" onClick={handleUpdateDetailsClick}>
             <div className="icon"><img src="/Update.svg" alt="Update Details" /></div>
-            <h3>Update Details</h3>
-            <p>Modify basic information</p>
+            <h3>{t('update_details')}</h3>
+            <p>{t('modify_basic_info')}</p>
           </div>
           <div className="action-card">
             <div className="icon"><img src="/pay.svg" alt="Payment" /></div>
-            <h3>Payment</h3>
-            <p>Pre & Present payments</p>
+            <h3>{t('payment')}</h3>
+            <p>{t('pre_present_payments')}</p>
           </div>
           <div className="action-card" onClick={handleTraceDetailsClick}>
             <div className="icon"><img src="/trace.webp" alt="Trace Details" /></div>
-            <h3>Trace Details</h3>
-            <p>Track your pass status</p>
+            <h3>{t('trace_details')}</h3>
+            <p>{t('track_pass_status')}</p>
           </div>
           <div className="action-card" onClick={handleFormsClick}>
             <div className="icon"><img src="/dow.svg" alt="Download Forms" /></div>
-            <h3>Download Forms</h3>
+            <h3>{t('download_forms')}</h3>
             {showForms ? (
               <div className="download-links">
-                <a href="/belowSSCApplicationForm.pdf" download="Below_SSC_Form.pdf" onClick={(e) => e.stopPropagation()}>Below SSC</a>
-                <a href="/aboveSSCApplicationForm.pdf" download="Above_SSC_Form.pdf" onClick={(e) => e.stopPropagation()}>Above SSC</a>
-                <a href="/NGOApplicationForm.pdf" download="NGO_Application.pdf" onClick={(e) => e.stopPropagation()}>NGO Application</a>
-                <a href="/JournalistForm.pdf" download="Journalist_Form.pdf" onClick={(e) => e.stopPropagation()}>Journalist Form</a>
+                <a href="/belowSSCApplicationForm.pdf" download="Below_SSC_Form.pdf" onClick={(e) => e.stopPropagation()}>{t('below_ssc')}</a>
+                <a href="/aboveSSCApplicationForm.pdf" download="Above_SSC_Form.pdf" onClick={(e) => e.stopPropagation()}>{t('above_ssc')}</a>
+                <a href="/NGOApplicationForm.pdf" download="NGO_Application.pdf" onClick={(e) => e.stopPropagation()}>{t('ngo_application')}</a>
+                <a href="/JournalistForm.pdf" download="Journalist_Form.pdf" onClick={(e) => e.stopPropagation()}>{t('journalist_form')}</a>
               </div>
             ) : (
-              <p>Click to view and download applications</p>
+              <p>{t('click_to_view_download')}</p>
             )}
           </div>
           <div className="action-card">
             <div className="icon"><img src="/pass.png" alt="My Pass" /></div>
-            <h3>My Pass</h3>
-            <p>View active passes</p>
+            <h3>{t('my_pass')}</h3>
+            <p>{t('view_active_passes')}</p>
           </div>
           <div className="action-card">
             <div className="icon"><img src="/renew.webp" alt="Renewal Pass" /></div>
-            <h3>Renewal Pass</h3>
-            <p>Below SSC & Above SSC</p>
+            <h3>{t('renewal_pass')}</h3>
+            <p>{t('below_ssc')} & {t('above_ssc')}</p>
           </div>
         </div>
       </div>
@@ -148,12 +136,12 @@ const Home = () => {
       {/* Footer Section */}
       <footer className="home-footer">
         <div className="footer-content">
-          <h4>Digital Bus Pass System</h4>
-          <p>&copy; {new Date().getFullYear()} Digital Bus Pass System. All rights reserved.</p>
+          <h4>{t('digital_bus_pass_system')}</h4>
+          <p>&copy; {new Date().getFullYear()} {t('digital_bus_pass_system')}. {t('all_rights_reserved')}</p>
           <div className="footer-links">
-            <a href="#about">About Us</a>
-            <a href="#contact">Contact</a>
-            <a href="#privacy">Privacy Policy</a>
+            <a href="#about">{t('about_us')}</a>
+            <a href="#contact">{t('contact')}</a>
+            <a href="#privacy">{t('privacy_policy')}</a>
           </div>
         </div>
       </footer>

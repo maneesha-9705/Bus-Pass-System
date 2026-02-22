@@ -8,26 +8,35 @@
   color: white;
 }
 
-.theme-toggle {
+.theme-toggle,
+.lang-toggle {
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
-  font-size: 20px;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  padding: 0;
   margin-right: 15px;
+  font-weight: 600;
 }
 
-.theme-toggle:hover {
+.theme-toggle {
+  font-size: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.theme-toggle:hover,
+.lang-toggle:hover {
   background: rgba(255, 255, 255, 0.3);
-  transform: rotate(15deg) scale(1.1);
+  transform: translateY(-2px);
 }
 
 /* LEFT SIDE */

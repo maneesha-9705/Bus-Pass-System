@@ -13,6 +13,14 @@ const Home = () => {
     setShowForms(!showForms);
   };
 
+  const handleEmployeeClick = () => {
+    setShowEmployeeLinks(!showEmployeeLinks);
+  };
+
+  const handleStudentClick = () => {
+    setShowStudentLinks(!showStudentLinks);
+  };
+
   const handleCitizenClick = () => {
     window.open('/citizen-form', '_blank');
   };
@@ -64,7 +72,7 @@ const Home = () => {
         <p className="welcome-subtitle">{t('welcome_subtitle')}</p>
 
         <div className="action-cards">
-          <div className="action-card">
+          <div className="action-card" onClick={handleStudentClick}>
             <div className="icon"><img src="/Student.svg" alt="Student" /></div>
             <h3>{t('fresh_registration')}</h3>
             <div className="student-links">
@@ -73,7 +81,7 @@ const Home = () => {
               <span onClick={() => navigate('/below-ssc')} className="card-link">{t('below_ssc')}</span>
             </div>
           </div>
-          <div className="action-card">
+          <div className="action-card" onClick={handleEmployeeClick}>
             <div className="icon"><img src="/emp.jpg" alt="Employee" /></div>
             <h3>{t('employee')}</h3>
             <p>{t('government_non_government')}</p>

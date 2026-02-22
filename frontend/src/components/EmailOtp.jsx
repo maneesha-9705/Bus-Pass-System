@@ -58,7 +58,7 @@ function EmailOtp() {
 };
 
   return (
-    <div className="container">
+    <div className="otp-container">
       <div className="card">
         <h2>Email Verification</h2>
 

@@ -1,14 +1,29 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import Header from './header';
 import './home.css';
 
 
 const Home = () => {
+  const navigate = useNavigate();
   const [showForms, setShowForms] = useState(false);
 
   const handleFormsClick = () => {
     setShowForms(!showForms);
   };
+
+  const handleCitizenClick = () => {
+    window.open('/citizen-form', '_blank');
+  };
+
+  const handleTraceDetailsClick = () => {
+    window.open('/trace-details', '_blank');
+  };
+
+  const handleUpdateDetailsClick = () => {
+    window.open('/update-details', '_blank');
+  };
+
   return (
     <div className="home-page-container">
       <div className="top-header-wrapper">
@@ -50,20 +65,24 @@ const Home = () => {
         <div className="action-cards">
           <div className="action-card">
             <div className="icon"><img src="/Student.svg" alt="Student" /></div>
-            <h3>Student</h3>
-            <p>Above SSC & Below SSC</p>
+            <h3>Fresh Registration</h3>
+            <div className="student-links">
+              <span onClick={() => navigate('/above-ssc')} className="card-link">Above SSC</span>
+              <span className="separator">&</span>
+              <span onClick={() => navigate('/below-ssc')} className="card-link">Below SSC</span>
+            </div>
           </div>
           <div className="action-card">
             <div className="icon"><img src="/emp.jpg" alt="Employee" /></div>
             <h3>Employee</h3>
             <p>Government and Non-Government</p>
           </div>
-          <div className="action-card">
+          <div className="action-card" onClick={handleCitizenClick}>
             <div className="icon"><img src="/citizen.jpg" alt="Citizens" /></div>
             <h3>Citizens</h3>
             <p>General citizens passes</p>
           </div>
-          <div className="action-card">
+          <div className="action-card" onClick={handleUpdateDetailsClick}>
             <div className="icon"><img src="/Update.svg" alt="Update Details" /></div>
             <h3>Update Details</h3>
             <p>Modify basic information</p>
@@ -73,7 +92,7 @@ const Home = () => {
             <h3>Payment</h3>
             <p>Pre & Present payments</p>
           </div>
-          <div className="action-card">
+          <div className="action-card" onClick={handleTraceDetailsClick}>
             <div className="icon"><img src="/trace.webp" alt="Trace Details" /></div>
             <h3>Trace Details</h3>
             <p>Track your pass status</p>

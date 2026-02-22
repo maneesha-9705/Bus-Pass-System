@@ -40,7 +40,7 @@ button:hover {
 }
 
 input {
-  background: rgba(15, 23, 42, 0.5);
+  background: #ffffff;
   border: 1px solid var(--glass-border);
   color: var(--text-primary);
   padding: 0.75rem;

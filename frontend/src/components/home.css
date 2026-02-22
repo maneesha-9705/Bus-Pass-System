@@ -250,9 +250,20 @@
   color: #818cf8;
 }
 
+@media (max-width: 1024px) {
+  .carousel-overlay h2 {
+    font-size: 2.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .carousel-container {
     min-height: 250px;
+    height: 40vh;
+  }
+
+  .home-content {
+    padding: 30px 20px;
   }
 
   .welcome-title {
@@ -265,11 +276,27 @@
   }
 
   .carousel-overlay h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .carousel-overlay p {
-    font-size: 1.1rem;
+    font-size: 1rem;
+  }
+
+  .action-cards {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .home-footer .footer-links {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-title {
+    font-size: 1.6rem;
   }
 
   .action-cards {

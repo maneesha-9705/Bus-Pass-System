@@ -1,5 +1,6 @@
 .apsrtc-top-header {
-  background-color: #e31e24; /* APSRTC red */
+  background-color: #e31e24;
+  /* APSRTC red */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -54,4 +55,47 @@
   margin: 5px 0 0 0;
   font-size: 28px;
   font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .apsrtc-top-header {
+    padding: 10px 15px;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .left-section {
+    flex-direction: row;
+  }
+
+  .apsrtc-logo {
+    width: 60px;
+    margin-right: 10px;
+  }
+
+  .telugu-title {
+    font-size: 20px;
+  }
+
+  .english-title {
+    font-size: 13px;
+  }
+
+  .right-section {
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .support-icon {
+    font-size: 30px;
+  }
+
+  .support-text {
+    font-size: 13px;
+  }
+
+  .support-number {
+    font-size: 20px;
+  }
 }

@@ -1,17 +1,11 @@
 :root {
-  --bg-color: #0f172a;
-  /* Slate 900 */
-  --card-bg: rgba(30, 41, 59, 0.7);
-  /* Slate 800 with opacity */
+  --bg-color: #ffffff;
+  --card-bg: #ffffff;
   --primary: #8b5cf6;
-  /* Violet 500 */
   --primary-hover: #7c3aed;
-  /* Violet 600 */
-  --text-primary: #f8fafc;
-  /* Slate 50 */
-  --text-secondary: #94a3b8;
-  /* Slate 400 */
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-primary: #333333;
+  --text-secondary: #64748b;
+  --glass-border: rgba(0, 0, 0, 0.1);
   --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
@@ -20,10 +14,6 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: var(--bg-color);
   color: var(--text-primary);
-  /* Abstract background shapes */
-  background-image:
-    radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 20%),
-    radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.15) 0%, transparent 20%);
   min-height: 100vh;
 }
 

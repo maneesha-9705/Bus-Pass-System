@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./EmailOtp.css";
 import { useLanguage } from "../context/LanguageContext";
+import Header from "./header";
 
 
 function EmailOtp() {
@@ -60,39 +61,42 @@ function EmailOtp() {
   };
 
   return (
-    <div className="otp-container">
-      <div className="card">
-        <h2>{t('email_verification')}</h2>
+    <>
+      <Header />
+      <div className="otp-container">
+        <div className="card">
+          <h2>{t('email_verification')}</h2>
 
-        <input
-          type="email"
-          placeholder={t('enter_email')}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="input-field"
-        />
+          <input
+            type="email"
+            placeholder={t('enter_email')}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="input-field"
+          />
 
-        <button className="btn send-btn" onClick={handleSendOtp}>
-          {t('send_otp')}
-        </button>
+          <button className="btn send-btn" onClick={handleSendOtp}>
+            {t('send_otp')}
+          </button>
 
-        {otpSent && (
-          <>
-            <input
-              type="text"
-              placeholder={t('enter_otp')}
-              value={otp}
-              onChange={(e) => setOtp(e.target.value)}
-              className="input-field"
-            />
+          {otpSent && (
+            <>
+              <input
+                type="text"
+                placeholder={t('enter_otp')}
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                className="input-field"
+              />
 
-            <button className="btn verify-btn" onClick={handleVerify}>
-              {t('verify')}
-            </button>
-          </>
-        )}
+              <button className="btn verify-btn" onClick={handleVerify}>
+                {t('verify')}
+              </button>
+            </>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

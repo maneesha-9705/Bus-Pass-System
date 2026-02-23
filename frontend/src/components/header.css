@@ -1,10 +1,42 @@
 .apsrtc-top-header {
-  background-color: #e31e24; /* APSRTC red */
+  background-color: var(--nav-bg);
+  /* APSRTC red in light mode, dark blue in dark mode */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
   color: white;
+}
+
+.theme-toggle,
+.lang-toggle {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 15px;
+  font-weight: 600;
+}
+
+.theme-toggle {
+  font-size: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.theme-toggle:hover,
+.lang-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
 /* LEFT SIDE */
@@ -54,4 +86,47 @@
   margin: 5px 0 0 0;
   font-size: 28px;
   font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .apsrtc-top-header {
+    padding: 10px 15px;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .left-section {
+    flex-direction: row;
+  }
+
+  .apsrtc-logo {
+    width: 60px;
+    margin-right: 10px;
+  }
+
+  .telugu-title {
+    font-size: 20px;
+  }
+
+  .english-title {
+    font-size: 13px;
+  }
+
+  .right-section {
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .support-icon {
+    font-size: 30px;
+  }
+
+  .support-text {
+    font-size: 13px;
+  }
+
+  .support-number {
+    font-size: 20px;
+  }
 }

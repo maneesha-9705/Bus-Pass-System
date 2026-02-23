@@ -51,12 +51,21 @@ const MyPass = () => {
                             {passes.map((pass, index) => (
                                 <div className="mypass-card-wrapper" key={index}>
                                     <p className="pass-meta">
-                                        Generated on: {new Date(pass.issueDate).toLocaleString("en-IN")}
+                                        {pass.isRenewal && <span className="renewal-badge">🔄 Renewed</span>}
+                                        {" "}Generated on: {new Date(pass.issueDate).toLocaleString("en-IN")}
                                     </p>
                                     <BusPassCard data={pass} />
-                                    <button className="delete-btn" onClick={() => handleDelete(index)}>
-                                        🗑 Remove This Pass
-                                    </button>
+                                    <div className="pass-action-btns">
+                                        <button
+                                            className="renew-btn"
+                                            onClick={() => navigate("/renewal")}
+                                        >
+                                            🔄 Renew This Pass
+                                        </button>
+                                        <button className="delete-btn" onClick={() => handleDelete(index)}>
+                                            🗑 Remove
+                                        </button>
+                                    </div>
                                 </div>
                             ))}
                         </div>

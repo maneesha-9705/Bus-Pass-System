@@ -125,7 +125,7 @@ const Home = () => {
             <h3>{t('my_pass')}</h3>
             <p>{t('view_active_passes')}</p>
           </div>
-          <div className="action-card">
+          <div className="action-card" onClick={() => navigate('/renewal')}>
             <div className="icon"><img src="/renew.webp" alt="Renewal Pass" /></div>
             <h3>{t('renewal_pass')}</h3>
             <p>{t('below_ssc')} & {t('above_ssc')}</p>

@@ -27,7 +27,8 @@ function App() {
       <Route path="/non-gov-emp-form" element={<NonGovEmpApplicationForm />} />
       <Route path="/trace-details" element={<TraceDetails />} />
       <Route path="/update-details" element={<UpdateDetails />} />
-      <Route path="/payment" element={<Payment />} />
+      <Route path="/payment" element={<Payment mode="new" />} />
+      <Route path="/renewal" element={<Payment mode="renewal" />} />
       <Route path="/my-pass" element={<MyPass />} />
     </Routes>
   );

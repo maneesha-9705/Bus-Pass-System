@@ -7,6 +7,8 @@ import { useLanguage } from '../context/LanguageContext';
 const Home = () => {
   const navigate = useNavigate();
   const [showForms, setShowForms] = useState(false);
+  const [showEmployeeLinks, setShowEmployeeLinks] = useState(false);
+  const [showStudentLinks, setShowStudentLinks] = useState(false);
   const { t } = useLanguage();
 
   const handleFormsClick = () => {
@@ -75,16 +77,28 @@ const Home = () => {
           <div className="action-card" onClick={handleStudentClick}>
             <div className="icon"><img src="/Student.svg" alt="Student" /></div>
             <h3>{t('fresh_registration')}</h3>
-            <div className="student-links">
-              <span onClick={() => navigate('/above-ssc')} className="card-link">{t('above_ssc')}</span>
-              <span className="separator">&</span>
-              <span onClick={() => navigate('/below-ssc')} className="card-link">{t('below_ssc')}</span>
-            </div>
+            {showStudentLinks ? (
+              <div className="download-links">
+                <span onClick={(e) => { e.stopPropagation(); window.open('/above-ssc', '_blank'); }}>{t('above_ssc')}</span>
+                <span onClick={(e) => { e.stopPropagation(); window.open('/below-ssc', '_blank'); }}>{t('below_ssc')}</span>
+              </div>
+            ) : (
+              <p>{t('above_ssc')} & {t('below_ssc')}</p>
+            )}
           </div>
           <div className="action-card" onClick={handleEmployeeClick}>
             <div className="icon"><img src="/emp.jpg" alt="Employee" /></div>
             <h3>{t('employee')}</h3>
-            <p>{t('government_non_government')}</p>
+            {showEmployeeLinks ? (
+              <div className="download-links">
+                <span onClick={(e) => { e.stopPropagation(); window.open('/gov-emp-form', '_blank'); }}>{t('gov_employee')}</span>
+                <span onClick={(e) => { e.stopPropagation(); window.open('/non-gov-emp-form', '_blank'); }}>{t('non_gov_employee')}</span>
+                <span onClick={(e) => { e.stopPropagation(); window.open('/ngo-form', '_blank'); }}>{t('ngo_application')}</span>
+                <span onClick={(e) => { e.stopPropagation(); window.open('/journalist-form', '_blank'); }}>{t('journalist_form')}</span>
+              </div>
+            ) : (
+              <p>{t('government_non_government')}</p>
+            )}
           </div>
           <div className="action-card" onClick={handleCitizenClick}>
             <div className="icon"><img src="/citizen.jpg" alt="Citizens" /></div>

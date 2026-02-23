@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 import './GovEmpApplicationForm.css';
+import { useLanguage } from '../context/LanguageContext';
 
 const GovEmpApplicationForm = () => {
+    const { t } = useLanguage();
     const [photo, setPhoto] = useState(null);
     const [showCamera, setShowCamera] = useState(false);
     const videoRef = useRef(null);
@@ -51,17 +53,17 @@ const GovEmpApplicationForm = () => {
     return (
         <div className="gov-emp-page-container">
             <div className="gov-emp-form-wrapper">
-                <h2>Government Employee Bus Pass Application Form</h2>
+                <h2>{t('gov_emp_pass_title')}</h2>
                 <h4>(RTC – GOV/EMP BUS PASS)</h4>
 
                 <form onSubmit={handleSubmit}>
                     {/* 1. EMPLOYEE DETAILS */}
                     <div className="form-section">
-                        <h3>1. Employee Details</h3>
+                        <h3>1. {t('applicant_details')}</h3>
                         <div className="form-grid">
                             <div className="form-group full-width">
-                                <label>1. Name of the Applicant</label>
-                                <input type="text" required />
+                                <label>1. {t('full_name')}</label>
+                                <input type="text" required placeholder={t('enter_name')} />
                             </div>
                             <div className="form-group">
                                 <label>2a. Designation</label>
@@ -80,32 +82,32 @@ const GovEmpApplicationForm = () => {
                                 <input type="text" required />
                             </div>
                             <div className="form-group">
-                                <label>4a. Father / Spouse Name</label>
-                                <input type="text" required />
+                                <label>4a. {t('father_guardian_name')}</label>
+                                <input type="text" required placeholder={t('father_guardian_name')} />
                             </div>
                             <div className="form-group">
-                                <label>4b. Aadhaar Number</label>
-                                <input type="text" maxLength="12" required />
+                                <label>4b. {t('aadhar_number')}</label>
+                                <input type="text" maxLength="12" required placeholder={t('enter_aadhar')} />
                             </div>
                             <div className="form-group">
-                                <label>5. Date of Birth</label>
+                                <label>5. {t('date_of_birth')}</label>
                                 <input type="date" required />
                             </div>
                             <div className="form-group">
-                                <label>6. Mobile Number</label>
-                                <input type="tel" required />
+                                <label>6. {t('mobile_no')}</label>
+                                <input type="tel" required placeholder={t('enter_mobile')} />
                             </div>
                             <div className="form-group">
                                 <label>7. Email ID</label>
-                                <input type="email" required />
+                                <input type="email" required placeholder="Email" />
                             </div>
                             <div className="form-group">
-                                <label>8. Gender</label>
+                                <label>8. {t('gender')}</label>
                                 <select required defaultValue="">
-                                    <option value="" disabled>Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
+                                    <option value="" disabled>{t('select_gender')}</option>
+                                    <option value="Male">{t('male')}</option>
+                                    <option value="Female">{t('female')}</option>
+                                    <option value="Other">{t('other')}</option>
                                 </select>
                             </div>
                         </div>
@@ -145,7 +147,7 @@ const GovEmpApplicationForm = () => {
 
                     {/* 3. BUS PASS DETAILS */}
                     <div className="form-section">
-                        <h3>3. Bus Pass Details</h3>
+                        <h3>3. {t('route_details')}</h3>
                         <div className="form-grid">
                             <div className="form-group">
                                 <label>14. Type of Pass Required</label>
@@ -167,12 +169,12 @@ const GovEmpApplicationForm = () => {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label>16. Travel Route / From</label>
-                                <input type="text" required />
+                                <label>16. {t('from_place')}</label>
+                                <input type="text" required placeholder={t('starting_point')} />
                             </div>
                             <div className="form-group">
-                                <label>To</label>
-                                <input type="text" required />
+                                <label>{t('to_place')}</label>
+                                <input type="text" required placeholder={t('to_place')} />
                             </div>
                             <div className="form-group full-width">
                                 <label>17. Boarding Point</label>
@@ -183,15 +185,15 @@ const GovEmpApplicationForm = () => {
 
                     {/* 4. ADDRESS DETAILS */}
                     <div className="form-section">
-                        <h3>4. Address Details</h3>
+                        <h3>4. {t('address_details')}</h3>
                         <div className="form-grid">
                             <div className="form-group full-width">
                                 <label>18. Residential Address</label>
-                                <textarea required rows="3"></textarea>
+                                <textarea required rows="3" placeholder={t('door_no_street')}></textarea>
                             </div>
                             <div className="form-group full-width">
                                 <label>19. Office Address</label>
-                                <textarea required rows="3"></textarea>
+                                <textarea required rows="3" placeholder="Office Address"></textarea>
                             </div>
                         </div>
                     </div>
@@ -214,7 +216,7 @@ const GovEmpApplicationForm = () => {
                             </div>
 
                             <div className="form-group photo-upload-container" style={{ gridColumn: '1 / -1', marginTop: '10px' }}>
-                                <label style={{ marginBottom: '15px' }}>✅ Latest Photograph Upload</label>
+                                <label style={{ marginBottom: '15px' }}>✅ {t('applicant_photo')}</label>
                                 <div className="photo-box-wrapper">
                                     <span className="dim-label dim-width">Photo Width: 3.5cms</span>
                                     <div className="photo-box">
@@ -223,14 +225,14 @@ const GovEmpApplicationForm = () => {
                                     <span className="dim-label dim-height">Photo Height: 4.5cms</span>
                                 </div>
                                 <button type="button" className="photo-action-btn" onClick={() => fileInputRef.current.click()}>
-                                    Upload Photo / Capture Photo *
+                                    {t('upload_capture_photo')} *
                                 </button>
                                 <button type="button" style={{ marginTop: '5px', fontSize: '0.8rem', background: 'none', border: 'none', color: '#6366f1', cursor: 'pointer', textDecoration: 'underline' }} onClick={startCamera}>
-                                    (Use Camera Instead)
+                                    {t('use_camera')}
                                 </button>
                                 <input type="file" ref={fileInputRef} hidden accept="image/*" onChange={handleFileUpload} />
                                 <p className="photo-help-text">
-                                    Upload JPEG format file. Size should be less than 1MB
+                                    {t('photo_spec_text')}
                                 </p>
                             </div>
                         </div>
@@ -248,7 +250,7 @@ const GovEmpApplicationForm = () => {
                     </div>
 
                     <div className="form-submit-container">
-                        <button type="submit" className="submit-btn">Submit Application</button>
+                        <button type="submit" className="submit-btn">{t('submit')}</button>
                     </div>
                 </form>
             </div>
@@ -259,8 +261,8 @@ const GovEmpApplicationForm = () => {
                         <video ref={videoRef} autoPlay style={{ width: '100%', borderRadius: '8px' }} />
                         <canvas ref={canvasRef} width="320" height="240" style={{ display: 'none' }} />
                         <div className="camera-actions">
-                            <button type="button" onClick={capturePhoto} className="capture-btn">Capture</button>
-                            <button type="button" onClick={stopCamera} className="cancel-btn">Cancel</button>
+                            <button type="button" onClick={capturePhoto} className="capture-btn">{t('capture')}</button>
+                            <button type="button" onClick={stopCamera} className="cancel-btn">{t('cancel')}</button>
                         </div>
                     </div>
                 </div>

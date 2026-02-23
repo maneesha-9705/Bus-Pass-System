@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import BusPassCard from "./BusPassCard";
 import "./Payment.css";
 import Header from "./header";
+import { useLanguage } from "../context/LanguageContext";
 
 /* ── Plans ─────────────────────────────────── */
 const PLANS = [
-    { months: 1, label: "Month", amount: 1050, save: null },
-    { months: 2, label: "Months", amount: 1900, save: "Save ₹200" },
-    { months: 6, label: "Months", amount: 5200, save: "Save ₹1100" },
+    { months: 1, label: "Month", labelKey: "month", amount: 1050, save: null },
+    { months: 2, label: "Months", labelKey: "months", amount: 1900, save: "Save ₹200", saveKey: "save_200" },
+    { months: 6, label: "Months", labelKey: "months", amount: 5200, save: "Save ₹1100", saveKey: "save_1100" },
 ];
 
 /* ── Mock DB for new passes ─────────────────── */
@@ -30,27 +31,30 @@ const MOCK_DB = {
 };
 
 /* ── Step Indicator ─────────────────────────── */
-const STEPS = ["ID", "Plan", "Pay", "Pass"];
-
-const StepIndicator = ({ current }) => (
-    <div className="step-indicator">
-        {STEPS.map((label, i) => (
-            <React.Fragment key={i}>
-                <div className={`step-dot ${i < current ? "done" : i === current ? "active" : ""}`}>
-                    {i < current ? "✓" : i + 1}
-                </div>
-                {i < STEPS.length - 1 && (
-                    <div className={`step-line ${i < current ? "done" : ""}`} />
-                )}
-            </React.Fragment>
-        ))}
-    </div>
-);
+const StepIndicator = ({ current, t }) => {
+    const steps = [t('id_step'), t('plan_step'), t('pay_step'), t('pass_step')];
+    return (
+        <div className="step-indicator">
+            {steps.map((label, i) => (
+                <React.Fragment key={i}>
+                    <div className={`step-dot ${i < current ? "done" : i === current ? "active" : ""}`}>
+                        {i < current ? "✓" : i + 1}
+                    </div>
+                    <div className={`step-label-text ${i === current ? "active" : ""}`}>{label}</div>
+                    {i < steps.length - 1 && (
+                        <div className={`step-line ${i < current ? "done" : ""}`} />
+                    )}
+                </React.Fragment>
+            ))}
+        </div>
+    );
+};
 
 /* ── Main Component ─────────────────────────── */
 /* mode: "new" | "renewal"                       */
 const Payment = ({ mode = "new" }) => {
     const navigate = useNavigate();
+    const { t, language } = useLanguage();
     const isRenewal = mode === "renewal";
 
     const [step, setStep] = useState(0);
@@ -63,7 +67,7 @@ const Payment = ({ mode = "new" }) => {
     /* ── Step 0: Fetch Details ── */
     const handleFetch = () => {
         if (!inputId.trim()) {
-            alert(`Please enter your ${isRenewal ? "Pass Number" : "Application ID"}`);
+            alert(t('enter_id_pass_alert') + (isRenewal ? t('pass_number') : t('application_id')));
             return;
         }
         setLoading(true);
@@ -77,10 +81,7 @@ const Payment = ({ mode = "new" }) => {
                     (p) => p.passNumber?.toUpperCase() === inputId.trim().toUpperCase()
                 );
                 if (!found) {
-                    alert(
-                        "Pass number not found in My Passes!\n" +
-                        "Please check your pass number and try again."
-                    );
+                    alert(t('pass_not_found_alert'));
                     setLoading(false);
                     return;
                 }
@@ -88,7 +89,7 @@ const Payment = ({ mode = "new" }) => {
                 // New pass — look up mock DB
                 found = MOCK_DB[inputId.trim().toUpperCase()];
                 if (!found) {
-                    alert("Application ID not found!\nUse APP123 or APP456 for demo.");
+                    alert(t('app_id_not_found_alert'));
                     setLoading(false);
                     return;
                 }
@@ -144,14 +145,14 @@ const Payment = ({ mode = "new" }) => {
     };
 
     /* ── Titles ── */
-    const pageTitle = isRenewal ? "Renew Your Pass" : "Pass Payment";
+    const pageTitle = isRenewal ? t('renew_your_pass') : t('pass_payment');
     const pageSubtitle = isRenewal
-        ? "Enter your existing Pass Number to renew"
-        : "Enter your Application ID to get your pass";
-    const inputLabel = isRenewal ? "Existing Pass Number" : "Application ID";
+        ? t('enter_pass_to_renew')
+        : t('enter_app_id_to_get_pass');
+    const inputLabel = isRenewal ? t('existing_pass_number') : t('application_id_label');
     const inputPlaceholder = isRenewal ? "e.g. APPTD-123456" : "e.g. APP123";
     const renewalNote = isRenewal
-        ? "Your new pass validity will start from today."
+        ? t('renewal_note')
         : null;
 
     return (
@@ -162,11 +163,11 @@ const Payment = ({ mode = "new" }) => {
                 {/* Mode Badge */}
                 <div style={{ textAlign: "center", marginBottom: "10px" }}>
                     <span className={`mode-badge ${isRenewal ? "renewal" : "new"}`}>
-                        {isRenewal ? "🔄 Renewal Pass" : "🆕 New Pass"}
+                        {isRenewal ? "🔄 " + t('renewal_pass_badge') : "🆕 " + t('new_pass_badge')}
                     </span>
                 </div>
 
-                <StepIndicator current={step} />
+                <StepIndicator current={step} t={t} />
 
                 {/* ── STEP 0: Enter ID / Pass Number ── */}
                 {step === 0 && (
@@ -174,11 +175,15 @@ const Payment = ({ mode = "new" }) => {
                         <h2 className="payment-title">{pageTitle}</h2>
                         <p className="payment-subtitle">{pageSubtitle}</p>
 
-                        {isRenewal && (
+                        {isRenewal && (language === 'en' ? (
                             <div className="renewal-hint">
                                 💡 Go to <strong>My Pass</strong> to find your Pass Number (starts with APPTD-)
                             </div>
-                        )}
+                        ) : (
+                            <div className="renewal-hint">
+                                💡 మీ పాస్ నంబర్ కోసం <strong>నా పాస్</strong>కి వెళ్ళండి (ఇది APPTD- తో మొదలవుతుంది)
+                            </div>
+                        ))}
 
                         <div className="payment-input-group">
                             <label>{inputLabel}</label>
@@ -194,7 +199,7 @@ const Payment = ({ mode = "new" }) => {
                         {loading
                             ? <div className="loading-spinner" />
                             : <button className="payment-btn" onClick={handleFetch}>
-                                Fetch Details →
+                                {t('fetch_details')} →
                             </button>
                         }
                     </div>
@@ -203,16 +208,16 @@ const Payment = ({ mode = "new" }) => {
                 {/* ── STEP 1: Choose Plan ── */}
                 {step === 1 && studentData && (
                     <div className="payment-card">
-                        <h2 className="payment-title">Choose Your Plan</h2>
-                        <p className="payment-subtitle">Select a validity period for your {isRenewal ? "renewed" : ""} bus pass</p>
+                        <h2 className="payment-title">{t('choose_your_plan')}</h2>
+                        <p className="payment-subtitle">{t('select_validity_description') + (isRenewal ? t('renewed') : "")}</p>
 
                         <div className="student-preview-box">
-                            <h4>{isRenewal ? "Renewing Pass For" : "Application Details"}</h4>
-                            <div className="info-row"><strong>Name</strong><span>{studentData.studentName}</span></div>
-                            <div className="info-row"><strong>College</strong><span>{studentData.schoolCollegeName}</span></div>
-                            <div className="info-row"><strong>Route</strong><span>{studentData.from} → {studentData.to}</span></div>
+                            <h4>{isRenewal ? t('renewing_pass_for') : t('application_details')}</h4>
+                            <div className="info-row"><strong>{t('name')}</strong><span>{studentData.studentName}</span></div>
+                            <div className="info-row"><strong>{t('college')}</strong><span>{studentData.schoolCollegeName}</span></div>
+                            <div className="info-row"><strong>{t('route')}</strong><span>{studentData.from} → {studentData.to}</span></div>
                             {isRenewal && studentData.passNumber && (
-                                <div className="info-row"><strong>Old Pass</strong><span>{studentData.passNumber}</span></div>
+                                <div className="info-row"><strong>{t('old_pass')}</strong><span>{studentData.passNumber}</span></div>
                             )}
                         </div>
 
@@ -225,9 +230,9 @@ const Payment = ({ mode = "new" }) => {
                                 >
                                     {selectedPlan?.months === plan.months && <div className="selected-badge">✓</div>}
                                     <div className="plan-months">{plan.months}</div>
-                                    <div className="plan-label">{plan.label}</div>
+                                    <div className="plan-label">{t(plan.labelKey)}</div>
                                     <div className="plan-amount">₹{plan.amount}</div>
-                                    {plan.save && <div className="plan-save">{plan.save}</div>}
+                                    {plan.saveKey && <div className="plan-save">{t(plan.saveKey)}</div>}
                                 </div>
                             ))}
                         </div>
@@ -238,34 +243,34 @@ const Payment = ({ mode = "new" }) => {
                             style={{ opacity: selectedPlan ? 1 : 0.5 }}
                             onClick={() => selectedPlan && handlePlanSelect(selectedPlan)}
                         >
-                            Continue to Payment →
+                            {t('continue_to_payment')} →
                         </button>
-                        <button className="payment-btn secondary" onClick={() => setStep(0)}>← Back</button>
+                        <button className="payment-btn secondary" onClick={() => setStep(0)}>← {t('back')}</button>
                     </div>
                 )}
 
                 {/* ── STEP 2: Payment Confirmation ── */}
                 {step === 2 && selectedPlan && (
                     <div className="payment-card">
-                        <h2 className="payment-title">Complete Payment</h2>
-                        <p className="payment-subtitle">Review and confirm your {isRenewal ? "renewal " : ""}payment</p>
+                        <h2 className="payment-title">{t('complete_payment')}</h2>
+                        <p className="payment-subtitle">{t('review_confirm_description')}</p>
 
                         <div className="student-preview-box">
-                            <h4>Order Summary</h4>
-                            <div className="info-row"><strong>Name</strong><span>{studentData.studentName}</span></div>
-                            <div className="info-row"><strong>Route</strong><span>{studentData.from} → {studentData.to}</span></div>
-                            <div className="info-row"><strong>College</strong><span>{studentData.schoolCollegeName}</span></div>
-                            <div className="info-row"><strong>Plan</strong><span>{selectedPlan.months} Month{selectedPlan.months > 1 ? "s" : ""}</span></div>
+                            <h4>{t('order_summary')}</h4>
+                            <div className="info-row"><strong>{t('name')}</strong><span>{studentData.studentName}</span></div>
+                            <div className="info-row"><strong>{t('route')}</strong><span>{studentData.from} → {studentData.to}</span></div>
+                            <div className="info-row"><strong>{t('college')}</strong><span>{studentData.schoolCollegeName}</span></div>
+                            <div className="info-row"><strong>{t('plan')}</strong><span>{selectedPlan.months} {t(selectedPlan.labelKey)}</span></div>
                             {isRenewal && (
-                                <div className="info-row"><strong>Type</strong><span style={{ color: "#c46b00", fontWeight: 700 }}>🔄 Renewal</span></div>
+                                <div className="info-row"><strong>{t('type')}</strong><span style={{ color: "#c46b00", fontWeight: 700 }}>🔄 {t('renewal_pass_badge')}</span></div>
                             )}
                         </div>
 
                         <div className="payment-summary">
-                            <div className="summary-label">{isRenewal ? "Renewal Amount" : "Total Amount"}</div>
+                            <div className="summary-label">{isRenewal ? t('renewal_amount') : t('total_amount')}</div>
                             <div className="summary-amount">₹{selectedPlan.amount}</div>
                             <div className="summary-plan">
-                                Valid for {selectedPlan.months} month{selectedPlan.months > 1 ? "s" : ""} from today
+                                {t('valid_for')} {selectedPlan.months} {t(selectedPlan.labelKey)} {t('from_today')}
                             </div>
                             {renewalNote && <div className="summary-note">{renewalNote}</div>}
                         </div>
@@ -274,9 +279,9 @@ const Payment = ({ mode = "new" }) => {
                             ? <div className="loading-spinner" />
                             : <>
                                 <button className="payment-btn" onClick={handlePayment}>
-                                    💳 Pay ₹{selectedPlan.amount} Now
+                                    💳 {t('pay')} ₹{selectedPlan.amount} {t('now')}
                                 </button>
-                                <button className="payment-btn secondary" onClick={() => setStep(1)}>← Change Plan</button>
+                                <button className="payment-btn secondary" onClick={() => setStep(1)}>← {t('change_plan')}</button>
                             </>
                         }
                     </div>
@@ -286,10 +291,9 @@ const Payment = ({ mode = "new" }) => {
                 {step === 3 && generatedPass && (
                     <div className="pass-preview-container">
                         <div className="success-banner">
-                            <h3>{isRenewal ? "🔄 Pass Renewed!" : "🎉 Payment Successful!"}</h3>
+                            <h3>{isRenewal ? "🔄 " + t('pass_renewed_title') : "🎉 " + t('payment_successful')}</h3>
                             <p>
-                                Your {isRenewal ? "renewed " : ""}bus pass has been generated and saved permanently to{" "}
-                                <strong>My Pass</strong>.
+                                {t('pass_generated_desc')} <strong>{t('my_pass_link')}</strong>.
                             </p>
                         </div>
 
@@ -300,14 +304,14 @@ const Payment = ({ mode = "new" }) => {
                             style={{ marginTop: "16px" }}
                             onClick={() => navigate("/my-pass")}
                         >
-                            🎫 View My Passes
+                            🎫 {t('view_my_passes')}
                         </button>
                         <button
                             className="payment-btn secondary"
                             style={{ marginTop: "10px" }}
                             onClick={handleReset}
                         >
-                            {isRenewal ? "Renew Another Pass" : "Pay for Another Pass"}
+                            {isRenewal ? t('renew_another_pass') : t('pay_for_another_pass')}
                         </button>
                     </div>
                 )}

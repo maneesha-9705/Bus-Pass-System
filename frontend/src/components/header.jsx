@@ -4,12 +4,12 @@ import { useTheme } from "../context/ThemeContext";
 import { useLanguage } from "../context/LanguageContext";
 // download logo and keep in assets
 
-function Header() {
+const Header = () => {
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLanguage, t } = useLanguage();
 
-  const teluguTitle = "ఆంధ్రప్రదేశ్ రాష్ట్ర రోడ్డు రవాణా సంస్థ";
-  const englishTitle = "Andhra Pradesh State Road Transport Corporation";
+  const teluguTitle = t('telugu_title');
+  const englishTitle = t('english_title');
 
   const [displayText, setDisplayText] = useState("");
   const [isTelugu, setIsTelugu] = useState(true);
@@ -44,7 +44,7 @@ function Header() {
       clearInterval(typingInterval);
       clearTimeout(pauseTimeout);
     };
-  }, [isTelugu]);
+  }, [isTelugu, teluguTitle, englishTitle]); // Added dependencies
 
   return (
     <div className="apsrtc-top-header">
@@ -77,6 +77,6 @@ function Header() {
 
     </div>
   );
-}
+};
 
 export default Header;

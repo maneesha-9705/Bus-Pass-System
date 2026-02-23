@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 import './aboveSSCForm.css';
+import { useLanguage } from '../context/LanguageContext';
 
 const AboveSSCForm = () => {
+    const { t } = useLanguage();
     const [formData, setFormData] = useState({
         name: '', fatherName: '', dob: '', aadhaar: '', gender: '',
         mobile: '', email: '', sscBoard: 'AP Board', sscYear: '', sscHtno: '',
@@ -67,86 +69,86 @@ const AboveSSCForm = () => {
         <div className="form-page-container">
             <div className="form-card">
                 <div className="form-title-bar">
-                    <h2 className="form-title">Student Above SSC Pass Registration</h2>
+                    <h2 className="form-title">{t('student_above_ssc_title')}</h2>
                 </div>
 
                 <form onSubmit={handleSubmit} className="registration-content">
                     <div className="top-section">
                         <div className="details-section">
-                            <h3 className="section-header">APPLICANT DETAILS</h3>
+                            <h3 className="section-header">{t('applicant_details')}</h3>
                             <div className="form-grid-2x2">
                                 <div className="form-group">
-                                    <label>Full Name <span className="required-star">*</span></label>
-                                    <input type="text" name="name" value={formData.name} onChange={handleChange} required placeholder="Enter your name" />
+                                    <label>{t('full_name')} <span className="required-star">*</span></label>
+                                    <input type="text" name="name" value={formData.name} onChange={handleChange} required placeholder={t('enter_name')} />
                                 </div>
                                 <div className="form-group">
-                                    <label>Father's / Guardian's Name <span className="required-star">*</span></label>
-                                    <input type="text" name="fatherName" value={formData.fatherName} onChange={handleChange} required placeholder="Enter Father's / Guardian's Name" />
+                                    <label>{t('father_guardian_name')} <span className="required-star">*</span></label>
+                                    <input type="text" name="fatherName" value={formData.fatherName} onChange={handleChange} required placeholder={t('father_guardian_name')} />
                                 </div>
                                 <div className="form-group">
-                                    <label>Gender <span className="required-star">*</span></label>
+                                    <label>{t('gender')} <span className="required-star">*</span></label>
                                     <select name="gender" value={formData.gender} onChange={handleChange} required>
-                                        <option value="">Select your gender</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                        <option value="Other">Other</option>
+                                        <option value="">{t('select_gender')}</option>
+                                        <option value="Male">{t('male')}</option>
+                                        <option value="Female">{t('female')}</option>
+                                        <option value="Other">{t('other')}</option>
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                    <label>Date of Birth <span className="required-star">*</span></label>
+                                    <label>{t('date_of_birth')} <span className="required-star">*</span></label>
                                     <input type="date" name="dob" value={formData.dob} onChange={handleChange} required />
                                 </div>
                             </div>
                             <div className="checkbox-group">
                                 <input type="checkbox" name="isEmployeeChild" checked={formData.isEmployeeChild} onChange={handleChange} />
-                                <label>Is Employee Child</label>
+                                <label>{t('is_employee_child')}</label>
                             </div>
                         </div>
 
                         <div className="photo-upload-container">
-                            <h3 className="section-header">APPLICANT PHOTO</h3>
+                            <h3 className="section-header">{t('applicant_photo')}</h3>
                             <div className="photo-box-wrapper">
-                                <span className="dim-label dim-width">Photo Width: 3.5cms</span>
+                                <span className="dim-label dim-width">{t('photo_width_label')}</span>
                                 <div className="photo-box">
                                     {photo ? <img src={photo} alt="Preview" /> : <img src="photo-spec.png" alt="No photo" style={{ opacity: 0.2 }} />}
                                 </div>
-                                <span className="dim-label dim-height">Photo Height: 4.5cms</span>
+                                <span className="dim-label dim-height">{t('photo_height_label')}</span>
                             </div>
                             <button type="button" className="photo-action-btn" onClick={() => fileInputRef.current.click()}>
-                                Upload Photo / Capture Photo *
+                                {t('upload_capture_photo')} *
                             </button>
                             <button type="button" style={{ marginTop: '5px', fontSize: '0.8rem', background: 'none', border: 'none', color: '#0076c0', cursor: 'pointer', textDecoration: 'underline' }} onClick={startCamera}>
-                                (Use Camera Instead)
+                                {t('use_camera')}
                             </button>
                             <input type="file" ref={fileInputRef} hidden accept="image/*" onChange={handleFileUpload} />
                             <p className="photo-help-text">
-                                Upload JPEG format file. Size should be less than 1MB
+                                {t('photo_spec_text')}
                             </p>
                         </div>
                     </div>
 
                     <div className="proofs-section">
-                        <h3 className="section-header">PROOFS</h3>
+                        <h3 className="section-header">{t('proofs')}</h3>
                         <div className="form-grid-2x2">
                             <div className="form-group">
-                                <label>Aadhar Number</label>
-                                <input type="text" name="aadhaar" value={formData.aadhaar} onChange={handleChange} placeholder="Enter Aadhar Number" />
+                                <label>{t('aadhar_number')}</label>
+                                <input type="text" name="aadhaar" value={formData.aadhaar} onChange={handleChange} placeholder={t('enter_aadhar')} />
                             </div>
                             <div className="form-group">
-                                <label>Mobile No <span className="required-star">*</span></label>
+                                <label>{t('mobile_no')} <span className="required-star">*</span></label>
                                 <div style={{ display: 'flex', gap: '5px' }}>
                                     <span style={{ padding: '10px', border: '1px solid #ddd', background: '#eee', borderRadius: '4px' }}>+91</span>
-                                    <input type="tel" name="mobile" value={formData.mobile} onChange={handleChange} required placeholder="Enter Mobile Number" style={{ flex: 1 }} />
+                                    <input type="tel" name="mobile" value={formData.mobile} onChange={handleChange} required placeholder={t('enter_mobile')} style={{ flex: 1 }} />
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div className="ssc-section">
-                        <h3 className="section-header">SSC DETAILS</h3>
+                        <h3 className="section-header">{t('ssc_details')}</h3>
                         <div className="form-grid-2x2">
                             <div className="form-group">
-                                <label>SSC Board Type</label>
+                                <label>{t('ssc_board_type')}</label>
                                 <select name="sscBoard" value={formData.sscBoard} onChange={handleChange}>
                                     <option>AP Board</option>
                                     <option>CBSE</option>
@@ -154,76 +156,76 @@ const AboveSSCForm = () => {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label>SSC Year of Pass</label>
-                                <input type="number" name="sscYear" value={formData.sscYear} onChange={handleChange} placeholder="Year of Passing" />
+                                <label>{t('ssc_year_of_pass')}</label>
+                                <input type="number" name="sscYear" value={formData.sscYear} onChange={handleChange} placeholder={t('year_of_passing')} />
                             </div>
                             <div className="form-group">
-                                <label>SSC Hall Ticket No</label>
-                                <input type="text" name="sscHtno" value={formData.sscHtno} onChange={handleChange} placeholder="Hall Ticket Number" />
+                                <label>{t('ssc_hall_ticket_no')}</label>
+                                <input type="text" name="sscHtno" value={formData.sscHtno} onChange={handleChange} placeholder={t('hall_ticket_number')} />
                             </div>
                         </div>
                     </div>
 
                     <div className="college-section">
-                        <h3 className="section-header">INSTITUTION DETAILS</h3>
+                        <h3 className="section-header">{t('institution_details')}</h3>
                         <div className="form-grid-2x2">
                             <div className="form-group">
-                                <label>Institution Name</label>
-                                <input type="text" name="college" value={formData.college} onChange={handleChange} placeholder="College Name" />
+                                <label>{t('institution_name')}</label>
+                                <input type="text" name="college" value={formData.college} onChange={handleChange} placeholder={t('college_name')} />
                             </div>
                             <div className="form-group">
-                                <label>Course/Year</label>
+                                <label>{t('course_year')}</label>
                                 <input type="text" name="course" value={formData.course} onChange={handleChange} placeholder="e.g. B.Tech 2nd Year" />
                             </div>
                         </div>
                     </div>
 
                     <div className="address-section">
-                        <h3 className="section-header">ADDRESS DETAILS</h3>
+                        <h3 className="section-header">{t('address_details')}</h3>
                         <div className="form-grid-2x2">
                             <div className="form-group">
-                                <label>Door No/Street</label>
-                                <input type="text" name="door" value={formData.door} onChange={handleChange} placeholder="Door No" />
+                                <label>{t('door_no_street')}</label>
+                                <input type="text" name="door" value={formData.door} onChange={handleChange} placeholder={t('door_no_street')} />
                             </div>
                             <div className="form-group">
-                                <label>Village/Town</label>
-                                <input type="text" name="village" value={formData.village} onChange={handleChange} placeholder="Village/Town" />
+                                <label>{t('village_town')}</label>
+                                <input type="text" name="village" value={formData.village} onChange={handleChange} placeholder={t('village_town')} />
                             </div>
                             <div className="form-group">
-                                <label>Mandal/District</label>
-                                <input type="text" name="mandal" value={formData.mandal} onChange={handleChange} placeholder="Mandal/District" />
+                                <label>{t('mandal_district')}</label>
+                                <input type="text" name="mandal" value={formData.mandal} onChange={handleChange} placeholder={t('mandal_district')} />
                             </div>
                             <div className="form-group">
-                                <label>Pincode</label>
-                                <input type="number" name="pincode" value={formData.pincode} onChange={handleChange} placeholder="Pincode" />
+                                <label>{t('pincode')}</label>
+                                <input type="number" name="pincode" value={formData.pincode} onChange={handleChange} placeholder={t('pincode')} />
                             </div>
                         </div>
                     </div>
 
                     <div className="route-section">
-                        <h3 className="section-header">ROUTE DETAILS</h3>
+                        <h3 className="section-header">{t('route_details')}</h3>
                         <div className="form-grid-2x2">
                             <div className="form-group">
-                                <label>From Place</label>
-                                <input type="text" name="from" value={formData.from} onChange={handleChange} placeholder="Starting Point" />
+                                <label>{t('from_place')}</label>
+                                <input type="text" name="from" value={formData.from} onChange={handleChange} placeholder={t('starting_point')} />
                             </div>
                             <div className="form-group">
-                                <label>Via</label>
-                                <input type="text" name="via" value={formData.via} onChange={handleChange} placeholder="Route Via" />
+                                <label>{t('via')}</label>
+                                <input type="text" name="via" value={formData.via} onChange={handleChange} placeholder={t('via')} />
                             </div>
                             <div className="form-group">
-                                <label>To Place</label>
-                                <input type="text" name="to" value={formData.to} onChange={handleChange} placeholder="Destination" />
+                                <label>{t('to_place')}</label>
+                                <input type="text" name="to" value={formData.to} onChange={handleChange} placeholder={t('to_place')} />
                             </div>
                             <div className="form-group">
-                                <label>Depot</label>
-                                <input type="text" name="depot" value={formData.depot} onChange={handleChange} placeholder="Bus Depot" />
+                                <label>{t('depot')}</label>
+                                <input type="text" name="depot" value={formData.depot} onChange={handleChange} placeholder={t('bus_depot')} />
                             </div>
                         </div>
                     </div>
 
                     <div className="form-footer">
-                        <button type="submit" className="submit-btn">SUBMIT</button>
+                        <button type="submit" className="submit-btn">{t('submit')}</button>
                     </div>
                 </form>
             </div>
@@ -234,8 +236,8 @@ const AboveSSCForm = () => {
                         <video ref={videoRef} autoPlay style={{ width: '100%', borderRadius: '4px' }} />
                         <canvas ref={canvasRef} width="320" height="240" style={{ display: 'none' }} />
                         <div className="camera-actions">
-                            <button onClick={capturePhoto} className="capture-btn">Capture</button>
-                            <button onClick={stopCamera} className="cancel-btn">Cancel</button>
+                            <button onClick={capturePhoto} className="capture-btn">{t('capture')}</button>
+                            <button onClick={stopCamera} className="cancel-btn">{t('cancel')}</button>
                         </div>
                     </div>
                 </div>

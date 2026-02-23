@@ -14,7 +14,7 @@ function EmailOtp() {
 
   const handleSendOtp = async () => {
     if (!email) {
-      alert("Please enter email");
+      alert(t('please_enter_email_alert'));
       return;
     }
 
@@ -29,20 +29,20 @@ function EmailOtp() {
 
       if (response.ok) {
         setOtpSent(true);
-        alert(data.message);
+        alert(t('otp_sent_alert'));
       } else {
-        alert(data.message || "Failed to send OTP");
+        alert(data.message || t('otp_send_failed_alert'));
       }
 
     } catch (error) {
       console.error("Error:", error);
-      alert("Server not connected");
+      alert(t('server_error_alert'));
     }
   };
 
   const handleVerify = async () => {
     if (!otp) {
-      alert("Enter OTP");
+      alert(t('enter_otp_alert'));
       return;
     }
 
@@ -56,7 +56,7 @@ function EmailOtp() {
     if (res.ok) {
       navigate("/home");
     } else {
-      alert(data.message || "OTP verification failed");
+      alert(data.message || t('otp_verify_failed_alert'));
     }
   };
 

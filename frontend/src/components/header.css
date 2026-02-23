@@ -56,17 +56,17 @@
 .title-section {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
-.telugu-title {
+.animated-title {
   font-size: 26px;
   font-weight: bold;
   margin: 0;
-}
-
-.english-title {
-  font-size: 16px;
-  margin: 5px 0 0 0;
+  min-height: 40px;
+  /* Prevent layout jump */
+  display: flex;
+  align-items: center;
 }
 
 /* RIGHT SIDE */

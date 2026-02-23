@@ -1,8 +1,12 @@
 {
   "name": "client",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
+  "description": "🚌 APSRTC Digital Bus Pass System",
+  "license": "ISC",
+  "author": "",
   "type": "module",
+  "main": "vite.config.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

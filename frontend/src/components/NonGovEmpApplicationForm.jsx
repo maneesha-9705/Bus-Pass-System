@@ -246,63 +246,14 @@ const NonGovEmpApplicationForm = () => {
                             <span>I hereby declare that the particulars furnished above are true and correct. I request issuance of Non-Government Employee Bus Pass subject to APSRTC rules and regulations.</span>
                         </label>
 
-                        <div className="declaration-grid">
-                            <div className="form-group">
-                                <label>Place</label>
-                                <input type="text" required />
-                            </div>
-                            <div className="form-group">
-                                <label>Date</label>
-                                <input type="date" required />
-                            </div>
-                        </div>
+
 
                         <div className="signature-box">
                             <p>Signature of Applicant</p>
                         </div>
                     </div>
 
-                    {/* 7. EMPLOYER CERTIFICATION */}
-                    <div className="form-section certification">
-                        <h3>7. Employer Certification Section</h3>
-                        <p style={{ color: '#64748b', fontSize: '0.9rem', marginBottom: '20px' }}>
-                            (To be filled by Employer / HR / Authorized Authority)
-                        </p>
 
-                        <div className="form-grid">
-                            <div className="form-group full-width">
-                                <label>Certified that Sri / Smt / Kum</label>
-                                <input type="text" required />
-                            </div>
-                            <div className="form-group">
-                                <label>is working as</label>
-                                <input type="text" required />
-                            </div>
-                            <div className="form-group">
-                                <label>in Organization</label>
-                                <input type="text" required />
-                            </div>
-                        </div>
-
-                        <p style={{ marginTop: '20px', color: '#334155', fontWeight: '500' }}>
-                            The employee details furnished above are verified with organization records and found correct.
-                        </p>
-
-                        <div className="certification-grid">
-                            <div className="form-group">
-                                <label>Place</label>
-                                <input type="text" required />
-                            </div>
-                            <div className="form-group">
-                                <label>Date</label>
-                                <input type="date" required />
-                            </div>
-                        </div>
-
-                        <div className="seal-box">
-                            <p>Organization Seal & Signature</p>
-                        </div>
-                    </div>
 
                     <div className="form-submit-container">
                         <button type="submit" className="submit-btn">Submit Application</button>

@@ -10,6 +10,8 @@ import NGOApplicationForm from "./components/NGOApplicationForm";
 import NonGovEmpApplicationForm from "./components/NonGovEmpApplicationForm";
 import TraceDetails from "./components/TraceDetails";
 import UpdateDetails from "./components/UpdateDetails";
+import Payment from "./components/Payment";
+import MyPass from "./components/MyPass";
 
 function App() {
   return (
@@ -25,6 +27,9 @@ function App() {
       <Route path="/non-gov-emp-form" element={<NonGovEmpApplicationForm />} />
       <Route path="/trace-details" element={<TraceDetails />} />
       <Route path="/update-details" element={<UpdateDetails />} />
+      <Route path="/payment" element={<Payment mode="new" />} />
+      <Route path="/renewal" element={<Payment mode="renewal" />} />
+      <Route path="/my-pass" element={<MyPass />} />
     </Routes>
   );
 }

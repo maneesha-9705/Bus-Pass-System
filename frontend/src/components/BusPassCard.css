@@ -1,0 +1,233 @@
+/* ─── Pass Container ─── */
+.pass-container {
+  width: 420px;
+  margin: 30px auto;
+  border: 2px solid #c46b00;
+  background: #fff8e6;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ─── Floating Date Watermark ─── */
+.floating-date-watermark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+  border-radius: 14px;
+}
+
+.floating-date-text {
+  position: absolute;
+  font-size: 11px;
+  color: rgba(196, 107, 0, 0.13);
+  font-weight: bold;
+  white-space: nowrap;
+  letter-spacing: 1px;
+  animation: floatDrift 28s linear infinite;
+  transform-origin: center center;
+}
+
+.floating-date-text:nth-child(1) {
+  top: 15%;
+  left: -30%;
+  animation-delay: 0s;
+}
+
+.floating-date-text:nth-child(2) {
+  top: 35%;
+  left: -30%;
+  animation-delay: -7s;
+}
+
+.floating-date-text:nth-child(3) {
+  top: 55%;
+  left: -30%;
+  animation-delay: -14s;
+}
+
+.floating-date-text:nth-child(4) {
+  top: 75%;
+  left: -30%;
+  animation-delay: -21s;
+}
+
+@keyframes floatDrift {
+  0% {
+    transform: translateX(0px) rotate(-8deg);
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  95% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(620px) rotate(-8deg);
+    opacity: 0;
+  }
+}
+
+/* ─── Pass Header ─── */
+.pass-header {
+  text-align: center;
+  background: linear-gradient(135deg, #d71920 60%, #b51217 100%);
+  padding: 16px 14px 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.pass-header h3 {
+  color: #fff;
+  margin: 0;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pass-header span {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: bold;
+}
+
+/* ─── Pass Top Row (photo + basic info) ─── */
+.pass-top-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px 18px 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.pass-photo-box {
+  flex-shrink: 0;
+  width: 80px;
+  height: 95px;
+  border: 2px solid #c46b00;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f0e0c0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pass-photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pass-photo-placeholder {
+  font-size: 36px;
+  color: #c46b00;
+  line-height: 1;
+}
+
+.pass-top-info {
+  flex: 1;
+}
+
+.pass-top-info p {
+  margin: 5px 0;
+  font-size: 13px;
+  color: #333;
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px dashed #ecd5a0;
+  padding-bottom: 4px;
+}
+
+.pass-top-info p strong {
+  color: #000;
+  min-width: 70px;
+}
+
+/* ─── Pass Body ─── */
+.pass-body {
+  padding: 0 18px 14px;
+  position: relative;
+  z-index: 2;
+}
+
+.pass-body p {
+  margin: 6px 0;
+  font-size: 13px;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #ecd5a0;
+  padding-bottom: 4px;
+}
+
+.pass-body p strong {
+  color: #000;
+}
+
+/* ─── Validity Banner ─── */
+.pass-validity-banner {
+  background: #c46b00;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 6px;
+  margin: 0 18px 14px;
+  border-radius: 6px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ─── Print Button ─── */
+.print-btn {
+  display: block;
+  margin: 0 18px 16px;
+  background: #d71920;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  width: calc(100% - 36px);
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: background 0.3s;
+  position: relative;
+  z-index: 2;
+}
+
+.print-btn:hover {
+  background: #b5151a;
+}
+
+@media print {
+  .print-btn {
+    display: none;
+  }
+
+  .pass-container {
+    box-shadow: none;
+    margin: 0;
+    width: 100%;
+    border: 2px solid #c46b00;
+    break-inside: avoid;
+  }
+
+  .floating-date-text {
+    color: rgba(196, 107, 0, 0.07);
+  }
+}

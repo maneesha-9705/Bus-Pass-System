@@ -244,16 +244,7 @@ const GovEmpApplicationForm = () => {
                             <span>I hereby declare that the information furnished above is true and correct. I request issuance of Government Employee Bus Pass subject to APSRTC rules and eligibility norms.</span>
                         </label>
 
-                        <div className="declaration-grid">
-                            <div className="form-group">
-                                <label>Place</label>
-                                <input type="text" required />
-                            </div>
-                            <div className="form-group">
-                                <label>Date</label>
-                                <input type="date" required />
-                            </div>
-                        </div>
+
                     </div>
 
                     <div className="form-submit-container">

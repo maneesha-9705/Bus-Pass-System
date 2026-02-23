@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./header.css";
 import { useTheme } from "../context/ThemeContext";
 import { useLanguage } from "../context/LanguageContext";
@@ -8,6 +8,44 @@ function Header() {
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLanguage, t } = useLanguage();
 
+  const teluguTitle = "ఆంధ్రప్రదేశ్ రాష్ట్ర రోడ్డు రవాణా సంస్థ";
+  const englishTitle = "Andhra Pradesh State Road Transport Corporation";
+
+  const [displayText, setDisplayText] = useState("");
+  const [isTelugu, setIsTelugu] = useState(true);
+
+  useEffect(() => {
+    let charIndex = 0;
+    let typingInterval;
+    let pauseTimeout;
+
+    const currentText = isTelugu ? teluguTitle : englishTitle;
+    const windowDuration = 10000; // 10 seconds per title (20s total cycle)
+    const typingSpeed = 50; // Fast typing speed
+
+    setDisplayText("");
+    charIndex = 0;
+
+    typingInterval = setInterval(() => {
+      if (charIndex < currentText.length) {
+        setDisplayText(currentText.slice(0, charIndex + 1));
+        charIndex++;
+      } else {
+        clearInterval(typingInterval);
+        // Wait for the remainder of the 10s window
+        const typingDuration = charIndex * typingSpeed;
+        pauseTimeout = setTimeout(() => {
+          setIsTelugu(!isTelugu);
+        }, Math.max(0, windowDuration - typingDuration));
+      }
+    }, typingSpeed);
+
+    return () => {
+      clearInterval(typingInterval);
+      clearTimeout(pauseTimeout);
+    };
+  }, [isTelugu]);
+
   return (
     <div className="apsrtc-top-header">
 
@@ -16,12 +54,9 @@ function Header() {
         <img src="/logo.png" alt="APSRTC Logo" className="apsrtc-logo" />
 
         <div className="title-section">
-          <h1 className="telugu-title">
-            {t('telugu_title')}
+          <h1 className="animated-title">
+            {displayText}
           </h1>
-          <p className="english-title">
-            {t('english_title')}
-          </p>
         </div>
       </div>
 

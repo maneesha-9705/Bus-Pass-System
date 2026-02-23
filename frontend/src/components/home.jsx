@@ -96,7 +96,7 @@ const Home = () => {
             <h3>{t('update_details')}</h3>
             <p>{t('modify_basic_info')}</p>
           </div>
-          <div className="action-card">
+          <div className="action-card" onClick={() => navigate('/payment')}>
             <div className="icon"><img src="/pay.svg" alt="Payment" /></div>
             <h3>{t('payment')}</h3>
             <p>{t('pre_present_payments')}</p>
@@ -120,7 +120,7 @@ const Home = () => {
               <p>{t('click_to_view_download')}</p>
             )}
           </div>
-          <div className="action-card">
+          <div className="action-card" onClick={() => navigate('/my-pass')}>
             <div className="icon"><img src="/pass.png" alt="My Pass" /></div>
             <h3>{t('my_pass')}</h3>
             <p>{t('view_active_passes')}</p>

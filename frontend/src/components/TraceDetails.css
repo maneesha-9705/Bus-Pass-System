@@ -1,6 +1,6 @@
 .trace-page-container {
     min-height: 100vh;
-    background-color: #f1f5f9;
+    background: linear-gradient(135deg, #fff8e6 0%, #fce8e8 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,14 +12,14 @@
     background: white;
     width: 100%;
     max-width: 550px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+    border: none;
     padding: 40px;
 }
 
 .trace-card h2 {
-    color: #1e293b;
+    color: #d71920;
     font-size: 1.8rem;
     margin-bottom: 10px;
     text-align: center;
@@ -27,7 +27,7 @@
 }
 
 .trace-subtitle {
-    color: #64748b;
+    color: #888;
     text-align: center;
     font-size: 0.95rem;
     margin-bottom: 30px;
@@ -65,8 +65,8 @@
 
 .trace-form .form-group input:focus {
     outline: none;
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    border-color: #d71920;
+    box-shadow: 0 0 0 3px rgba(215, 25, 32, 0.08);
 }
 
 .submit-container {
@@ -76,10 +76,10 @@
 }
 
 .trace-submit-btn {
-    background: #6366f1;
+    background: linear-gradient(135deg, #d71920, #b51217);
     color: white;
     border: none;
-    padding: 14px 40px;
+    padding: 13px 40px;
     font-size: 1.1rem;
     font-weight: 600;
     border-radius: 8px;
@@ -90,13 +90,12 @@
 }
 
 .trace-submit-btn:hover:not(:disabled) {
-    background: #4f46e5;
     transform: translateY(-2px);
-    box-shadow: 0 6px 8px -1px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 6px 20px rgba(215, 25, 32, 0.3);
 }
 
 .trace-submit-btn:disabled {
-    background: #94a3b8;
+    background: #fca5a5;
     cursor: not-allowed;
     transform: none;
 }

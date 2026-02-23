@@ -1,6 +1,6 @@
 .update-page-container {
     min-height: 100vh;
-    background-color: #f1f5f9;
+    background: linear-gradient(135deg, #fff8e6 0%, #fce8e8 100%);
     padding: 60px 20px;
     display: flex;
     justify-content: center;
@@ -12,22 +12,22 @@
     background: white;
     width: 100%;
     max-width: 700px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+    border: none;
     padding: 40px;
     text-align: center;
 }
 
 .update-card h2 {
-    color: #1e293b;
+    color: #d71920;
     font-size: 2rem;
     margin-bottom: 10px;
     font-weight: 800;
 }
 
 .update-subtitle {
-    color: #475569;
+    color: #888;
     font-size: 1rem;
     margin-bottom: 30px;
 }
@@ -77,8 +77,8 @@
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    border-color: #d71920;
+    box-shadow: 0 0 0 3px rgba(215, 25, 32, 0.08);
 }
 
 .submit-container {
@@ -93,10 +93,10 @@
 }
 
 .update-submit-btn {
-    background: #6366f1;
+    background: linear-gradient(135deg, #d71920, #b51217);
     color: white;
     border: none;
-    padding: 14px 20px;
+    padding: 13px 30px;
     font-size: 1rem;
     font-weight: 600;
     border-radius: 8px;
@@ -106,13 +106,12 @@
 }
 
 .update-submit-btn:hover {
-    background: #4f46e5;
     transform: translateY(-2px);
-    box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.2);
+    box-shadow: 0 6px 20px rgba(215, 25, 32, 0.3);
 }
 
 .update-submit-btn:disabled {
-    background: #a5b4fc;
+    background: #fca5a5;
     cursor: not-allowed;
     transform: none;
     box-shadow: none;

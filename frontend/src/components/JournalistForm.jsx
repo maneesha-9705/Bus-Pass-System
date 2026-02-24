@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 import './JournalistForm.css';
+import { useLanguage } from '../context/LanguageContext';
 
 const JournalistForm = () => {
+    const { t } = useLanguage();
     const [photo, setPhoto] = useState(null);
     const [showCamera, setShowCamera] = useState(false);
     const videoRef = useRef(null);
@@ -51,62 +53,62 @@ const JournalistForm = () => {
     return (
         <div className="journalist-page-container">
             <div className="journalist-form-wrapper">
-                <h2>APSRTC Journalist Bus Pass Application</h2>
+                <h2>{t('journalist_pass_title')}</h2>
                 <form onSubmit={handleSubmit}>
                     {/* PERSONAL DETAILS */}
                     <div className="form-section">
-                        <h3>Personal Details</h3>
+                        <h3>{t('applicant_details')}</h3>
                         <div className="form-grid">
                             <div className="form-group">
-                                <label>Full Name</label>
-                                <input type="text" required />
+                                <label>{t('full_name')}</label>
+                                <input type="text" required placeholder={t('enter_name')} />
                             </div>
                             <div className="form-group">
-                                <label>Father / Guardian Name</label>
-                                <input type="text" required />
+                                <label>{t('father_guardian_name')}</label>
+                                <input type="text" required placeholder={t('father_guardian_name')} />
                             </div>
                             <div className="form-group">
-                                <label>Date of Birth</label>
+                                <label>{t('date_of_birth')}</label>
                                 <input type="date" required />
                             </div>
                             <div className="form-group">
-                                <label>Gender</label>
+                                <label>{t('gender')}</label>
                                 <select required defaultValue="">
-                                    <option value="" disabled>Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Other">Other</option>
+                                    <option value="" disabled>{t('select_gender')}</option>
+                                    <option value="Male">{t('male')}</option>
+                                    <option value="Female">{t('female')}</option>
+                                    <option value="Other">{t('other')}</option>
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label>Aadhaar Number</label>
-                                <input type="text" maxLength="12" required />
+                                <label>{t('aadhar_number')}</label>
+                                <input type="text" maxLength="12" required placeholder={t('enter_aadhar')} />
                             </div>
                             <div className="form-group">
-                                <label>Mobile Number</label>
-                                <input type="tel" required />
+                                <label>{t('mobile_no')}</label>
+                                <input type="tel" required placeholder={t('enter_mobile')} />
                             </div>
                             <div className="form-group">
-                                <label>Email</label>
-                                <input type="email" required />
+                                <label>{t('email')}</label>
+                                <input type="email" required placeholder={t('email')} />
                             </div>
                         </div>
                     </div>
 
                     {/* JOURNALIST SPECIFIC DETAILS */}
                     <div className="form-section">
-                        <h3>Journalist Details</h3>
+                        <h3>{t('journalist_details')}</h3>
                         <div className="form-grid">
                             <div className="form-group full-width">
-                                <label>Organization / Media House Name</label>
+                                <label>{t('organization_name')}</label>
                                 <input type="text" required />
                             </div>
                             <div className="form-group">
-                                <label>Designation</label>
+                                <label>{t('designation')}</label>
                                 <input type="text" required />
                             </div>
                             <div className="form-group">
-                                <label>Accreditation Card Number</label>
+                                <label>{t('accreditation_no')}</label>
                                 <input type="text" required />
                             </div>
                         </div>
@@ -114,45 +116,45 @@ const JournalistForm = () => {
 
                     {/* ADDRESS */}
                     <div className="form-section">
-                        <h3>Residential Address</h3>
+                        <h3>{t('address_details')}</h3>
                         <div className="form-group full-width">
-                            <label>Address</label>
-                            <textarea required rows="3"></textarea>
+                            <label>{t('door_no_street')}</label>
+                            <textarea required rows="3" placeholder={t('door_no_street')}></textarea>
                         </div>
                         <div className="form-grid">
                             <div className="form-group">
-                                <label>District</label>
-                                <input type="text" required />
+                                <label>{t('mandal_district')}</label>
+                                <input type="text" required placeholder={t('mandal_district')} />
                             </div>
                             <div className="form-group">
-                                <label>City / Village</label>
-                                <input type="text" required />
+                                <label>{t('village_town')}</label>
+                                <input type="text" required placeholder={t('village_town')} />
                             </div>
                             <div className="form-group">
-                                <label>PIN Code</label>
-                                <input type="number" required />
+                                <label>{t('pincode')}</label>
+                                <input type="number" required placeholder={t('pincode')} />
                             </div>
                         </div>
                     </div>
 
                     {/* DOCUMENT UPLOAD */}
                     <div className="form-section">
-                        <h3>Documents Upload</h3>
+                        <h3>{t('documents_upload')}</h3>
                         <div className="form-grid">
                             <div className="form-group file-upload" style={{ gridColumn: '1 / -1' }}>
-                                <label>Upload Accreditation Card Copy</label>
+                                <label>{t('upload_accreditation')}</label>
                                 <input type="file" required />
                             </div>
                             <div className="form-group file-upload">
-                                <label>Upload Address Proof</label>
+                                <label>{t('upload_address_proof')}</label>
                                 <input type="file" required />
                             </div>
                             <div className="form-group file-upload">
-                                <label>Upload Aadhaar Proof</label>
+                                <label>{t('upload_aadhar_proof')}</label>
                                 <input type="file" required />
                             </div>
                             <div className="form-group photo-upload-container" style={{ gridColumn: '1 / -1', marginTop: '10px' }}>
-                                <label style={{ marginBottom: '15px' }}>Upload Photograph</label>
+                                <label style={{ marginBottom: '15px' }}>{t('applicant_photo')}</label>
                                 <div className="photo-box-wrapper">
                                     <span className="dim-label dim-width">Photo Width: 3.5cms</span>
                                     <div className="photo-box">
@@ -161,14 +163,14 @@ const JournalistForm = () => {
                                     <span className="dim-label dim-height">Photo Height: 4.5cms</span>
                                 </div>
                                 <button type="button" className="photo-action-btn" onClick={() => fileInputRef.current.click()}>
-                                    Upload Photo / Capture Photo *
+                                    {t('upload_capture_photo')} *
                                 </button>
                                 <button type="button" style={{ marginTop: '5px', fontSize: '0.8rem', background: 'none', border: 'none', color: '#6366f1', cursor: 'pointer', textDecoration: 'underline' }} onClick={startCamera}>
-                                    (Use Camera Instead)
+                                    {t('use_camera')}
                                 </button>
                                 <input type="file" ref={fileInputRef} hidden accept="image/*" onChange={handleFileUpload} />
                                 <p className="photo-help-text">
-                                    Upload JPEG format file. Size should be less than 1MB
+                                    {t('photo_spec_text')}
                                 </p>
                             </div>
                         </div>
@@ -176,32 +178,32 @@ const JournalistForm = () => {
 
                     {/* PASS DETAILS */}
                     <div className="form-section">
-                        <h3>Pass Requirement</h3>
+                        <h3>{t('pass_requirement')}</h3>
                         <div className="form-grid">
                             <div className="form-group">
-                                <label>Pass Type</label>
+                                <label>{t('pass_type')}</label>
                                 <select required defaultValue="">
-                                    <option value="" disabled>Select Pass</option>
-                                    <option value="Ordinary">Ordinary</option>
-                                    <option value="Metro">Metro</option>
-                                    <option value="City">City</option>
+                                    <option value="" disabled>{t('select_pass')}</option>
+                                    <option value="Ordinary">{t('ordinary')}</option>
+                                    <option value="Metro">{t('metro')}</option>
+                                    <option value="City">{t('city')}</option>
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label>Source Stop</label>
-                                <input type="text" required />
+                                <label>{t('from_place')}</label>
+                                <input type="text" required placeholder={t('starting_point')} />
                             </div>
                             <div className="form-group">
-                                <label>Destination Stop</label>
-                                <input type="text" required />
+                                <label>{t('to_place')}</label>
+                                <input type="text" required placeholder={t('to_place')} />
                             </div>
                             <div className="form-group">
-                                <label>Validity</label>
+                                <label>{t('validity')}</label>
                                 <select required defaultValue="">
-                                    <option value="" disabled>Select Validity</option>
-                                    <option value="Monthly">Monthly</option>
-                                    <option value="Quarterly">Quarterly</option>
-                                    <option value="Half-Yearly">Half-Yearly</option>
+                                    <option value="" disabled>{t('select_validity')}</option>
+                                    <option value="Monthly">{t('monthly')}</option>
+                                    <option value="Quarterly">{t('quarterly')}</option>
+                                    <option value="Half-Yearly">{t('half_yearly')}</option>
                                 </select>
                             </div>
                         </div>
@@ -209,15 +211,15 @@ const JournalistForm = () => {
 
                     {/* DECLARATION */}
                     <div className="form-section declaration">
-                        <h3>Declaration</h3>
+                        <h3>{t('declaration')}</h3>
                         <label className="checkbox-label">
                             <input type="checkbox" required />
-                            <span>I hereby declare that the information provided is true and agree to APSRTC rules for Journalists.</span>
+                            <span>{t('declaration_text')}</span>
                         </label>
                     </div>
 
                     <div className="form-submit-container">
-                        <button type="submit" className="submit-btn">Submit Application</button>
+                        <button type="submit" className="submit-btn">{t('submit')}</button>
                     </div>
                 </form>
             </div>
@@ -228,8 +230,8 @@ const JournalistForm = () => {
                         <video ref={videoRef} autoPlay style={{ width: '100%', borderRadius: '8px' }} />
                         <canvas ref={canvasRef} width="320" height="240" style={{ display: 'none' }} />
                         <div className="camera-actions">
-                            <button type="button" onClick={capturePhoto} className="capture-btn">Capture</button>
-                            <button type="button" onClick={stopCamera} className="cancel-btn">Cancel</button>
+                            <button type="button" onClick={capturePhoto} className="capture-btn">{t('capture')}</button>
+                            <button type="button" onClick={stopCamera} className="cancel-btn">{t('cancel')}</button>
                         </div>
                     </div>
                 </div>

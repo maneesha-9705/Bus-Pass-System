@@ -4,12 +4,12 @@ import { useTheme } from "../context/ThemeContext";
 import { useLanguage } from "../context/LanguageContext";
 // download logo and keep in assets
 
-function Header() {
+const Header = () => {
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLanguage, t } = useLanguage();
 
-  const teluguTitle = "ఆంధ్రప్రదేశ్ రాష్ట్ర రోడ్డు రవాణా సంస్థ";
-  const englishTitle = "Andhra Pradesh State Road Transport Corporation";
+  const teluguTitle = t('telugu_title');
+  const englishTitle = t('english_title');
 
   const [displayText, setDisplayText] = useState("");
   const [isTelugu, setIsTelugu] = useState(true);
@@ -44,7 +44,7 @@ function Header() {
       clearInterval(typingInterval);
       clearTimeout(pauseTimeout);
     };
-  }, [isTelugu]);
+  }, [isTelugu, teluguTitle, englishTitle]); // Added dependencies
 
   return (
     <div className="apsrtc-top-header">
@@ -68,7 +68,9 @@ function Header() {
         <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle Theme">
           {theme === 'light' ? '🌙' : '☀️'}
         </button>
-        <div className="support-icon">🎧</div>
+        <div className="support-icon">
+          <img src="/support-icon.png" alt="Support" />
+        </div>
         <div>
           <p className="support-text">{t('support_text')}</p>
           <h2 className="support-number">0866 2570005</h2>
@@ -77,6 +79,6 @@ function Header() {
 
     </div>
   );
-}
+};
 
 export default Header;

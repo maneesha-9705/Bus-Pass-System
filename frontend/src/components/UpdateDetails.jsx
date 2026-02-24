@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './UpdateDetails.css';
+import { useLanguage } from '../context/LanguageContext';
 
 const UpdateDetails = () => {
+    const { t } = useLanguage();
     const [identifier, setIdentifier] = useState('');
     const [dob, setDob] = useState('');
     const [loading, setLoading] = useState(false);
@@ -42,7 +44,7 @@ const UpdateDetails = () => {
                 setResult(fetchedData);
                 setEditData(fetchedData);
             } else {
-                setError("No records found. Please check your Mobile/Aadhaar and Date of Birth.");
+                setError(t('no_records_found_alert'));
             }
         }, 1200);
     };
@@ -69,16 +71,16 @@ const UpdateDetails = () => {
     return (
         <div className="update-page-container">
             <div className="update-card">
-                <h2>Update Pass Details</h2>
-                <p className="update-subtitle">Search using your Registered Mobile/Aadhaar Number to update your information.</p>
+                <h2>{t('update_details_title')}</h2>
+                <p className="update-subtitle">{t('update_details_subtitle')}</p>
 
                 {!result ? (
                     <form onSubmit={handleSearch} className="update-form">
                         <div className="form-group">
-                            <label>Mobile Number / Aadhaar Number</label>
+                            <label>{t('mobile_aadhaar_label')}</label>
                             <input
                                 type="text"
-                                placeholder="Enter Mobile or Aadhaar"
+                                placeholder={t('enter_mobile_aadhaar_placeholder')}
                                 value={identifier}
                                 onChange={(e) => setIdentifier(e.target.value)}
                                 required
@@ -86,7 +88,7 @@ const UpdateDetails = () => {
                         </div>
 
                         <div className="form-group">
-                            <label>Date of Birth</label>
+                            <label>{t('date_of_birth')}</label>
                             <input
                                 type="date"
                                 value={dob}
@@ -97,22 +99,22 @@ const UpdateDetails = () => {
 
                         <div className="submit-container">
                             <button type="submit" className="update-submit-btn" disabled={loading}>
-                                {loading ? 'Fetching Details...' : 'Fetch Details'}
+                                {loading ? t('fetching_details_btn') : t('fetch_details_btn_search')}
                             </button>
                         </div>
                     </form>
                 ) : (
                     <div className="edit-form-container">
-                        <h3>Edit Your Information</h3>
+                        <h3>{t('edit_info_title')}</h3>
                         {updateSuccess && (
                             <div className="success-message">
-                                Details successfully updated!
+                                {t('details_updated_success')}
                             </div>
                         )}
                         <form onSubmit={handleUpdate} className="update-form edit-form">
                             <div className="form-grid">
                                 <div className="form-group">
-                                    <label>Full Name</label>
+                                    <label>{t('full_name')}</label>
                                     <input
                                         type="text"
                                         name="name"
@@ -122,22 +124,22 @@ const UpdateDetails = () => {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Pass Type</label>
+                                    <label>{t('pass_type_label')}</label>
                                     <select
                                         name="passType"
                                         value={editData.passType}
                                         onChange={handleEditChange}
                                         required
                                     >
-                                        <option value="Student General">Student General</option>
-                                        <option value="Student Special">Student Special</option>
-                                        <option value="Employee">Employee</option>
-                                        <option value="Citizen Ordinary">Citizen Ordinary</option>
-                                        <option value="Citizen Metro">Citizen Metro</option>
+                                        <option value="Student General">{t('student_general')}</option>
+                                        <option value="Student Special">{t('student_special')}</option>
+                                        <option value="Employee">{t('employee')}</option>
+                                        <option value="Citizen Ordinary">{t('citizen_ordinary')}</option>
+                                        <option value="Citizen Metro">{t('citizen_metro')}</option>
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                    <label>Source Stop</label>
+                                    <label>{t('source_stop')}</label>
                                     <input
                                         type="text"
                                         name="source"
@@ -147,7 +149,7 @@ const UpdateDetails = () => {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Destination Stop</label>
+                                    <label>{t('destination_stop')}</label>
                                     <input
                                         type="text"
                                         name="destination"
@@ -157,7 +159,7 @@ const UpdateDetails = () => {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Mobile Number</label>
+                                    <label>{t('mobile_number_label')}</label>
                                     <input
                                         type="tel"
                                         name="mobileNumber"
@@ -167,7 +169,7 @@ const UpdateDetails = () => {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Email ID</label>
+                                    <label>{t('email_id_label')}</label>
                                     <input
                                         type="email"
                                         name="email"
@@ -178,9 +180,9 @@ const UpdateDetails = () => {
                                 </div>
                             </div>
                             <div className="submit-container form-actions">
-                                <button type="button" className="cancel-btn" onClick={() => setResult(null)}>Back to Search</button>
+                                <button type="button" className="cancel-btn" onClick={() => setResult(null)}>{t('back_to_search')}</button>
                                 <button type="submit" className="update-submit-btn" disabled={loading}>
-                                    {loading ? 'Updating...' : 'Update Details'}
+                                    {loading ? t('updating_btn') : t('update_details_btn')}
                                 </button>
                             </div>
                         </form>

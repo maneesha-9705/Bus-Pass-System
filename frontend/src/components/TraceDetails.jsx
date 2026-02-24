@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './TraceDetails.css';
+import { useLanguage } from '../context/LanguageContext';
 
 const TraceDetails = () => {
+    const { t } = useLanguage();
     const [identifier, setIdentifier] = useState('');
     const [dob, setDob] = useState('');
     const [loading, setLoading] = useState(false);
@@ -22,13 +24,13 @@ const TraceDetails = () => {
                 setResult({
                     name: "Venkata Sai",
                     passType: "Student General",
-                    status: "Active",
+                    status: t('active_status'),
                     source: "Vijayawada",
                     destination: "Guntur",
                     validUpto: "2026-12-31"
                 });
             } else {
-                setError("Invalid details. Please check your Mobile/Aadhaar and Date of Birth.");
+                setError(t('invalid_trace_details_alert'));
             }
         }, 1500);
     };
@@ -36,15 +38,15 @@ const TraceDetails = () => {
     return (
         <div className="trace-page-container">
             <div className="trace-card">
-                <h2>Trace Application / Pass Details</h2>
-                <p className="trace-subtitle">Check your pass status using your registered Mobile Number or Aadhaar Number.</p>
+                <h2>{t('trace_details_title')}</h2>
+                <p className="trace-subtitle">{t('trace_details_subtitle')}</p>
 
                 <form onSubmit={handleSubmit} className="trace-form">
                     <div className="form-group">
-                        <label>Mobile Number / Aadhaar Number</label>
+                        <label>{t('mobile_aadhaar_label')}</label>
                         <input
                             type="text"
-                            placeholder="Enter Mobile or Aadhaar"
+                            placeholder={t('enter_mobile_aadhaar_placeholder')}
                             value={identifier}
                             onChange={(e) => setIdentifier(e.target.value)}
                             required
@@ -52,7 +54,7 @@ const TraceDetails = () => {
                     </div>
 
                     <div className="form-group">
-                        <label>Date of Birth</label>
+                        <label>{t('date_of_birth')}</label>
                         <input
                             type="date"
                             value={dob}
@@ -63,7 +65,7 @@ const TraceDetails = () => {
 
                     <div className="submit-container">
                         <button type="submit" className="trace-submit-btn" disabled={loading}>
-                            {loading ? 'Fetching Details...' : 'Get Details'}
+                            {loading ? t('fetching_details_btn') : t('get_details_btn')}
                         </button>
                     </div>
                 </form>
@@ -76,26 +78,26 @@ const TraceDetails = () => {
 
                 {result && (
                     <div className="result-card">
-                        <h3>Pass Information</h3>
+                        <h3>{t('pass_information_title')}</h3>
                         <div className="result-grid">
                             <div className="result-row">
-                                <span className="result-label">Name:</span>
+                                <span className="result-label">{t('name')}:</span>
                                 <span className="result-value">{result.name}</span>
                             </div>
                             <div className="result-row">
-                                <span className="result-label">Pass Type:</span>
+                                <span className="result-label">{t('pass_type_label')}:</span>
                                 <span className="result-value">{result.passType}</span>
                             </div>
                             <div className="result-row">
-                                <span className="result-label">Route:</span>
-                                <span className="result-value">{result.source} to {result.destination}</span>
+                                <span className="result-label">{t('route')}:</span>
+                                <span className="result-value">{result.source} {t('to')} {result.destination}</span>
                             </div>
                             <div className="result-row">
-                                <span className="result-label">Valid Upto:</span>
+                                <span className="result-label">{t('valid_upto_label')}:</span>
                                 <span className="result-value font-bold">{result.validUpto}</span>
                             </div>
                             <div className="result-row">
-                                <span className="result-label">Status:</span>
+                                <span className="result-label">{t('status_label')}:</span>
                                 <span className="result-value status-active">{result.status}</span>
                             </div>
                         </div>

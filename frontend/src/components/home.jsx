@@ -47,22 +47,22 @@ const Home = () => {
           <div className="carousel-slide">
             <img src="/homebg.png" alt="Bus 1" />
             <div className="carousel-overlay">
-              <h2>Safe & Reliable Journey</h2>
-              <p>Experience comfort with every ride.</p>
+              <h2>{t('safe_reliable_journey')}</h2>
+              <p>{t('comfortable_ride_desc')}</p>
             </div>
           </div>
           <div className="carousel-slide">
             <img src="/home2.png" alt="Bus 2" />
             <div className="carousel-overlay">
-              <h2>Express Bus Services</h2>
-              <p>Connecting cities, bringing people together.</p>
+              <h2>{t('express_bus_services')}</h2>
+              <p>{t('connecting_cities_desc')}</p>
             </div>
           </div>
           <div className="carousel-slide">
             <img src="/home1.jpg" alt="Bus 3" />
             <div className="carousel-overlay">
-              <h2>Easy Pass Booking</h2>
-              <p>Get your passes digitally in seconds.</p>
+              <h2>{t('easy_pass_booking')}</h2>
+              <p>{t('digital_pass_desc')}</p>
             </div>
           </div>
 

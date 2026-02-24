@@ -77,7 +77,15 @@
 }
 
 .support-icon {
-  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.support-icon img {
+  width: 48px;
+  height: 48px;
+  filter: brightness(0) invert(1); /* Makes the black icon white to match theme */
 }
 
 .support-text {
@@ -121,8 +129,9 @@
     flex-direction: column;
   }
 
-  .support-icon {
-    font-size: 30px;
+  .support-icon img {
+    width: 32px;
+    height: 32px;
   }
 
   .support-text {

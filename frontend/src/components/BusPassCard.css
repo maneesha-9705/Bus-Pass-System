@@ -1,12 +1,11 @@
-/* ─── Pass Container ─── */
 .pass-container {
   width: 420px;
   margin: 30px auto;
-  border: 2px solid #c46b00;
-  background: #fff8e6;
+  border: 2px solid var(--hint-border);
+  background: var(--hint-bg);
   padding: 0;
-  font-family: Arial, sans-serif;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  font-family: inherit;
+  box-shadow: var(--glass-shadow);
   border-radius: 14px;
   overflow: hidden;
   position: relative;
@@ -117,10 +116,10 @@
   flex-shrink: 0;
   width: 80px;
   height: 95px;
-  border: 2px solid #c46b00;
+  border: 2px solid var(--hint-border);
   border-radius: 8px;
   overflow: hidden;
-  background: #f0e0c0;
+  background: var(--secondary-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -145,10 +144,10 @@
 .pass-top-info p {
   margin: 5px 0;
   font-size: 13px;
-  color: #333;
+  color: var(--text-primary);
   display: flex;
   gap: 4px;
-  border-bottom: 1px dashed #ecd5a0;
+  border-bottom: 1px dashed var(--border-color);
   padding-bottom: 4px;
 }
 
@@ -167,20 +166,20 @@
 .pass-body p {
   margin: 6px 0;
   font-size: 13px;
-  color: #333;
+  color: var(--text-primary);
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px dashed #ecd5a0;
+  border-bottom: 1px dashed var(--border-color);
   padding-bottom: 4px;
 }
 
 .pass-body p strong {
-  color: #000;
+  color: var(--text-primary);
 }
 
 /* ─── Validity Banner ─── */
 .pass-validity-banner {
-  background: #c46b00;
+  background: var(--hint-text);
   color: white;
   text-align: center;
   font-size: 12px;

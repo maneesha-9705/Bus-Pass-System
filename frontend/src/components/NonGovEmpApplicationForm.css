@@ -1,7 +1,6 @@
-/* ----- NON-GOVT EMPLOYEE FORM STYLES ----- */
 .non-gov-emp-page-container {
     min-height: 100vh;
-    background: linear-gradient(135deg, #fff8e6 0%, #fce8e8 100%);
+    background: var(--bg-color);
     padding: 40px 20px;
     display: flex;
     justify-content: center;
@@ -10,12 +9,12 @@
 }
 
 .non-gov-emp-form-wrapper {
-    background: white;
+    background: var(--card-bg);
     width: 100%;
     max-width: 950px;
     border-radius: 18px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
-    border: none;
+    box-shadow: var(--glass-shadow);
+    border: 1px solid var(--glass-border);
     padding: 40px;
 }
 
@@ -28,25 +27,25 @@
 }
 
 .non-gov-emp-form-wrapper h4 {
-    color: #64748b;
+    color: var(--text-secondary);
     font-size: 1.1rem;
     margin-bottom: 30px;
     text-align: center;
     font-weight: 500;
-    border-bottom: 2px solid #e2e8f0;
+    border-bottom: 2px solid var(--border-color);
     padding-bottom: 15px;
 }
 
 .form-section {
-    background: #f8fafc;
+    background: var(--secondary-bg);
     padding: 25px;
     border-radius: 8px;
     margin-bottom: 25px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-color);
 }
 
 .form-section h3 {
-    color: #334155;
+    color: var(--text-primary);
     font-size: 1.2rem;
     margin-bottom: 20px;
     font-weight: 600;
@@ -83,7 +82,7 @@
 .form-group label {
     font-size: 0.9rem;
     font-weight: 600;
-    color: #475569;
+    color: var(--text-secondary);
     margin-bottom: 8px;
 }
 
@@ -95,11 +94,11 @@
 .form-group select,
 .form-group textarea {
     padding: 12px 16px;
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--input-border);
     border-radius: 6px;
     font-size: 1rem;
-    color: #1e293b;
-    background: white;
+    color: var(--text-primary);
+    background: var(--input-bg);
     transition: all 0.2s ease;
     font-family: inherit;
 }
@@ -118,18 +117,18 @@
 
 .form-group.file-upload input[type="file"] {
     padding: 8px;
-    background: white;
-    border: 1px dashed #cbd5e1;
+    background: var(--input-bg);
+    border: 1px dashed var(--input-border);
     cursor: pointer;
 }
 
 .form-group.file-upload input[type="file"]::file-selector-button {
-    background: #f1f5f9;
-    border: 1px solid #cbd5e1;
+    background: var(--secondary-bg);
+    border: 1px solid var(--input-border);
     border-radius: 4px;
     padding: 6px 12px;
     margin-right: 12px;
-    color: #475569;
+    color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.2s ease;
 }
@@ -142,7 +141,7 @@
 .form-section.declaration,
 .form-section.certification {
     background: transparent;
-    border: 1px dashed #cbd5e1;
+    border: 1px dashed var(--border-color);
 }
 
 .checkbox-label {
@@ -151,7 +150,7 @@
     gap: 12px;
     cursor: pointer;
     font-size: 0.95rem;
-    color: #334155;
+    color: var(--text-primary);
     line-height: 1.5;
 }
 
@@ -174,11 +173,11 @@
 .seal-box {
     margin-top: 20px;
     padding: 20px;
-    border: 1px dashed #94a3b8;
+    border: 1px dashed var(--border-color);
     text-align: center;
-    color: #64748b;
+    color: var(--text-secondary);
     border-radius: 6px;
-    background: #f8fafc;
+    background: var(--secondary-bg);
 }
 
 /* Submit Button */
@@ -231,8 +230,8 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background: #fff;
-    border: 1px dashed #cbd5e1;
+    background: var(--card-bg);
+    border: 1px dashed var(--border-color);
     border-radius: 8px;
     padding: 20px;
 }
@@ -245,8 +244,8 @@
 .photo-box {
     width: 132px;
     height: 170px;
-    border: 2px solid #333;
-    background-color: #f1f5f9;
+    border: 2px solid var(--text-primary);
+    background-color: var(--secondary-bg);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -265,7 +264,7 @@
 .dim-label {
     position: absolute;
     font-size: 0.75rem;
-    color: #475569;
+    color: var(--text-secondary);
     font-weight: 600;
 }
 
@@ -283,9 +282,9 @@
 }
 
 .photo-action-btn {
-    background-color: #f1f5f9;
-    color: #475569;
-    border: 1px solid #cbd5e1;
+    background-color: var(--secondary-bg);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
     padding: 10px 20px;
     border-radius: 6px;
     font-weight: 600;
@@ -321,12 +320,13 @@
 }
 
 .camera-content {
-    background: white;
+    background: var(--card-bg);
     padding: 20px;
     border-radius: 12px;
     max-width: 450px;
     width: 90%;
     text-align: center;
+    color: var(--text-primary);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 

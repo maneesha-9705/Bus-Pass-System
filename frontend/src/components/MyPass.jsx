@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import Header from "./header";
 import BusPassCard from "./BusPassCard";
 import "./MyPass.css";
+import { useLanguage } from "../context/LanguageContext";
 
 const MyPass = () => {
     const navigate = useNavigate();
+    const { t } = useLanguage();
     const [passes, setPasses] = useState([]);
 
     // Load passes from localStorage on mount
@@ -21,7 +23,7 @@ const MyPass = () => {
     };
 
     const handleClearAll = () => {
-        if (window.confirm("Are you sure you want to delete all passes?")) {
+        if (window.confirm(t('confirm_delete_all_passes'))) {
             localStorage.removeItem("myPasses");
             setPasses([]);
         }
@@ -32,17 +34,17 @@ const MyPass = () => {
             <Header />
             <div className="mypass-container">
                 <div className="mypass-header">
-                    <h2>🎫 My Bus Passes</h2>
-                    <p>All your generated bus passes are stored here permanently.</p>
+                    <h2>🎫 {t('my_bus_passes')}</h2>
+                    <p>{t('my_passes_description')}</p>
                 </div>
 
                 {passes.length === 0 ? (
                     <div className="mypass-empty">
                         <div className="empty-icon">🚌</div>
-                        <h3>No Passes Found</h3>
-                        <p>You haven't generated any bus passes yet. Go to the Payment section to get your pass.</p>
+                        <h3>{t('no_passes_found')}</h3>
+                        <p>{t('no_passes_description')}</p>
                         <button className="go-payment-btn" onClick={() => navigate("/payment")}>
-                            Get Your Bus Pass
+                            {t('get_your_bus_pass')}
                         </button>
                     </div>
                 ) : (
@@ -51,8 +53,8 @@ const MyPass = () => {
                             {passes.map((pass, index) => (
                                 <div className="mypass-card-wrapper" key={index}>
                                     <p className="pass-meta">
-                                        {pass.isRenewal && <span className="renewal-badge">🔄 Renewed</span>}
-                                        {" "}Generated on: {new Date(pass.issueDate).toLocaleString("en-IN")}
+                                        {pass.isRenewal && <span className="renewal-badge">🔄 {t('renewed')}</span>}
+                                        {" "}{t('generated_on')}: {new Date(pass.issueDate).toLocaleString("en-IN")}
                                     </p>
                                     <BusPassCard data={pass} />
                                     <div className="pass-action-btns">
@@ -60,17 +62,17 @@ const MyPass = () => {
                                             className="renew-btn"
                                             onClick={() => navigate("/renewal")}
                                         >
-                                            🔄 Renew This Pass
+                                            🔄 {t('renew_this_pass')}
                                         </button>
                                         <button className="delete-btn" onClick={() => handleDelete(index)}>
-                                            🗑 Remove
+                                            🗑 {t('remove')}
                                         </button>
                                     </div>
                                 </div>
                             ))}
                         </div>
                         <button className="mypass-clear-btn" onClick={handleClearAll}>
-                            Clear All Passes
+                            {t('clear_all_passes')}
                         </button>
                     </>
                 )}

@@ -6,22 +6,26 @@
 }
 
 .otp-container {
-  height: 100vh;
+  min-height: calc(100vh - 80px);
   display: flex;
   justify-content: center;
   align-items: center;
   /* background: linear-gradient(135deg, #b29cc9, #b8c1d1); */
-  background-color: #ffffff;
+  background-color: var(--bg-color);
+  transition: background-color 0.3s ease;
 }
 
 .card {
-  background: white;
+  background: var(--card-bg);
   padding: 40px;
   width: 100%;
   max-width: 350px;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--glass-shadow);
+  border: 1px solid var(--glass-border);
   text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
 @media (max-width: 480px) {
@@ -32,7 +36,7 @@
 
 .card h2 {
   margin-bottom: 20px;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .input-field {
@@ -40,15 +44,17 @@
   padding: 12px;
   margin-bottom: 15px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--glass-border);
+  background-color: var(--card-bg);
+  color: var(--text-primary);
   font-size: 14px;
   transition: 0.3s;
 }
 
 .input-field:focus {
-  border-color: #2575fc;
+  border-color: var(--primary);
   outline: none;
-  box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
+  box-shadow: 0 0 5px var(--primary);
 }
 
 .btn {
@@ -60,15 +66,16 @@
   font-size: 15px;
   cursor: pointer;
   transition: 0.3s;
+  background-color: var(--primary);
+}
+
+.btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
 }
 
 .send-btn {
-  background-color: #2575fc;
   margin-bottom: 15px;
-}
-
-.send-btn:hover {
-  background-color: #1a5ed8;
 }
 
 .verify-btn {

@@ -129,6 +129,7 @@ const Home = () => {
                 <a href="/aboveSSCApplicationForm.pdf" download="Above_SSC_Form.pdf" onClick={(e) => e.stopPropagation()}>{t('above_ssc')}</a>
                 <a href="/NGOApplicationForm.pdf" download="NGO_Application.pdf" onClick={(e) => e.stopPropagation()}>{t('ngo_application')}</a>
                 <a href="/JournalistForm.pdf" download="Journalist_Form.pdf" onClick={(e) => e.stopPropagation()}>{t('journalist_form')}</a>
+                <a href="/General_Bus_Pass.pdf" download="General_Bus_Pass.pdf" onClick={(e) => e.stopPropagation()}>{t('others_form')}</a>
               </div>
             ) : (
               <p>{t('click_to_view_download')}</p>

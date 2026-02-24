@@ -1,6 +1,7 @@
 :root {
   --bg-color: #ffffff;
   --card-bg: #ffffff;
+  --secondary-bg: #f8fafc;
   --primary: #8b5cf6;
   --primary-hover: #7c3aed;
   --text-primary: #333333;
@@ -9,18 +10,41 @@
   --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   --nav-bg: #e31e24;
   /* APSRTC red */
+  --input-bg: #ffffff;
+  --input-border: #e2e8f0;
+  --border-color: #e2e8f0;
+
+  /* Feature Specific */
+  --hint-bg: #fff8e6;
+  --hint-border: #fef3c7;
+  --hint-text: #92400e;
+  --success-bg: #f0fdf4;
+  --success-border: #dcfce7;
+  --success-text: #166534;
 }
 
 [data-theme="dark"] {
   --bg-color: #0f172a;
   --card-bg: #1e293b;
-  --primary: #a78bfa;
-  --primary-hover: #c4b5fd;
+  --secondary-bg: #334155;
+  --primary: #8b5cf6;
+  --primary-hover: #7c3aed;
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   --nav-bg: #1e293b;
+  --input-bg: #1e293b;
+  --input-border: #334155;
+  --border-color: #334155;
+
+  /* Feature Specific */
+  --hint-bg: #1e293b;
+  --hint-border: #b45309;
+  --hint-text: #fbbf24;
+  --success-bg: #064e3b;
+  --success-border: #059669;
+  --success-text: #34d399;
 }
 
 body {

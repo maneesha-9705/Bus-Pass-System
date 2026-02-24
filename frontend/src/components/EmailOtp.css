@@ -79,9 +79,11 @@
 }
 
 .verify-btn {
-  background-color: #28a745;
+  background-color: var(--success-text);
 }
 
 .verify-btn:hover {
-  background-color: #1e7e34;
+  background-color: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid var(--success-text);
 }

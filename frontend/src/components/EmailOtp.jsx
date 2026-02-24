@@ -92,6 +92,12 @@ function EmailOtp() {
               <button className="btn verify-btn" onClick={handleVerify}>
                 {t('verify')}
               </button>
+
+              <div className="resend-wrapper">
+                <span className="resend-link" onClick={handleSendOtp}>
+                  {t('resend_otp')}
+                </span>
+              </div>
             </>
           )}
         </div>

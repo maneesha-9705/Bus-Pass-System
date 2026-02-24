@@ -121,3 +121,30 @@
   color: var(--success-text);
   border: 1px solid var(--success-text);
 }
+
+.resend-wrapper {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.resend-link {
+  color: #d71920;
+  /* Red in light mode */
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.resend-link:hover {
+  color: #ff4d4d;
+}
+
+[data-theme="dark"] .resend-link {
+  color: var(--primary);
+}
+
+[data-theme="dark"] .resend-link:hover {
+  color: var(--primary-hover);
+}

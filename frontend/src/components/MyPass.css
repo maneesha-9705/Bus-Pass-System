@@ -69,14 +69,14 @@
 }
 
 .mypass-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 30px;
-    justify-items: center;
+    justify-content: center;
 }
 
 .mypass-card-wrapper {
-    width: 100%;
+    width: 420px;
     animation: slideUp 0.4s ease-out;
 }
 

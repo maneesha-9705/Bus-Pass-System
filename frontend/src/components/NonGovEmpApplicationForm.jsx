@@ -66,15 +66,15 @@ const NonGovEmpApplicationForm = () => {
                                 <input type="text" required placeholder={t('enter_name')} />
                             </div>
                             <div className="form-group">
-                                <label>2a. Designation</label>
+                                <label>2a. {t('designation')}</label>
                                 <input type="text" required />
                             </div>
                             <div className="form-group">
-                                <label>2b. Employee ID Number</label>
+                                <label>2b. {t('employee_id')}</label>
                                 <input type="text" required />
                             </div>
                             <div className="form-group">
-                                <label>3a. Organization / Company Name</label>
+                                <label>3a. {t('org_company_name')}</label>
                                 <input type="text" required />
                             </div>
                             <div className="form-group">
@@ -90,8 +90,8 @@ const NonGovEmpApplicationForm = () => {
                                 <input type="tel" required placeholder={t('enter_mobile')} />
                             </div>
                             <div className="form-group">
-                                <label>5. Email ID</label>
-                                <input type="email" required placeholder="Email" />
+                                <label>5. {t('email_id')}</label>
+                                <input type="email" required placeholder={t('email')} />
                             </div>
                             <div className="form-group">
                                 <label>6. {t('gender')}</label>
@@ -107,41 +107,39 @@ const NonGovEmpApplicationForm = () => {
 
                     {/* 2. EMPLOYMENT INFORMATION */}
                     <div className="form-section">
-                        <h3>2. Employment Information</h3>
+                        <h3>2. {t('employment_info')}</h3>
                         <div className="form-grid">
                             <div className="form-group full-width">
-                                <label>7. Employment Type</label>
+                                <label>7. {t('employment_type')}</label>
                                 <select required defaultValue="">
-                                    <option value="" disabled>Select Employment Type</option>
-                                    <option value="Private Employee">Private Employee</option>
-                                    <option value="Contract Employee">Contract Employee</option>
-                                    <option value="Industrial Worker">Industrial Worker</option>
-                                    <option value="Self-Employed">Self-Employed</option>
+                                    <option value="" disabled>{t('select_pass')} {t('employment_type')}</option>
+                                    <option value="Private Employee">{t('private_employee')}</option>
+                                    <option value="Contract Employee">{t('contract_employee')}</option>
+                                    <option value="Industrial Worker">{t('industrial_worker')}</option>
+                                    <option value="Self-Employed">{t('self_employed')}</option>
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label>8. Organization Category</label>
+                                <label>8. {t('org_category')}</label>
                                 <select required defaultValue="">
-                                    <option value="" disabled>Select Category</option>
-                                    <option value="Private Company">Private Company</option>
-                                    <option value="Industry / Factory">Industry / Factory</option>
-                                    <option value="Educational Institution">Educational Institution</option>
-                                    <option value="Corporate Office">Corporate Office</option>
-                                    <option value="Other">Other</option>
+                                    <option value="" disabled>{t('select_gender')}</option>
+                                    <option value="Private Company">{t('private_company')}</option>
+                                    <option value="Industry / Factory">{t('industry_factory')}</option>
+                                    <option value="Educational Institution">{t('edu_inst')}</option>
+                                    <option value="Corporate Office">{t('corp_office')}</option>
+                                    <option value="Other">{t('other')}</option>
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label>9. Date of Joining</label>
+                                <label>9. {t('joining_date')}</label>
                                 <input type="date" required />
                             </div>
                             <div className="form-group">
-                                <label>10. Monthly Income Range</label>
+                                <label>10. {t('monthly_income')}</label>
                                 <select required defaultValue="">
-                                    <option value="" disabled>Select Income Range</option>
-                                    <option value="Below ₹15,000">Below ₹15,000</option>
-                                    <option value="₹15,000 – ₹30,000">₹15,000 – ₹30,000</option>
-                                    <option value="₹30,000 – ₹50,000">₹30,000 – ₹50,000</option>
-                                    <option value="Above ₹50,000">Above ₹50,000</option>
+                                    <option value="" disabled>{t('select_validity')}</option>
+                                    <option value="Below ₹15,000">{t('below_ssc')} ₹15,000</option>
+                                    <option value="Above ₹50,000">{t('above_ssc')} ₹50,000</option>
                                 </select>
                             </div>
                         </div>
@@ -152,22 +150,22 @@ const NonGovEmpApplicationForm = () => {
                         <h3>3. {t('route_details')}</h3>
                         <div className="form-grid">
                             <div className="form-group">
-                                <label>11. Type of Pass Required</label>
+                                <label>11. {t('pass_type_req')}</label>
                                 <select required defaultValue="">
-                                    <option value="" disabled>Select Pass Type</option>
-                                    <option value="Ordinary">Ordinary</option>
-                                    <option value="Metro Express">Metro Express</option>
-                                    <option value="City Special">City Special</option>
-                                    <option value="Inter-City Pass">Inter-City Pass</option>
+                                    <option value="" disabled>{t('select_pass')}</option>
+                                    <option value="Ordinary">{t('ordinary')}</option>
+                                    <option value="Metro Express">{t('metro_express')}</option>
+                                    <option value="City Special">{t('city_special')}</option>
+                                    <option value="Inter-City Pass">{t('inter_city_pass')}</option>
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label>12. Pass Duration</label>
+                                <label>12. {t('pass_duration')}</label>
                                 <select required defaultValue="">
-                                    <option value="" disabled>Select Duration</option>
-                                    <option value="Monthly">Monthly</option>
-                                    <option value="Quarterly">Quarterly</option>
-                                    <option value="Annual">Annual</option>
+                                    <option value="" disabled>{t('select_validity')}</option>
+                                    <option value="Monthly">{t('monthly')}</option>
+                                    <option value="Quarterly">{t('quarterly')}</option>
+                                    <option value="Annual">{t('annual')}</option>
                                 </select>
                             </div>
                             <div className="form-group">
@@ -179,7 +177,7 @@ const NonGovEmpApplicationForm = () => {
                                 <input type="text" required placeholder={t('to_place')} />
                             </div>
                             <div className="form-group full-width">
-                                <label>14. Boarding Point</label>
+                                <label>14. {t('boarding_point')}</label>
                                 <input type="text" required />
                             </div>
                         </div>
@@ -190,41 +188,41 @@ const NonGovEmpApplicationForm = () => {
                         <h3>4. {t('address_details')}</h3>
                         <div className="form-grid">
                             <div className="form-group full-width">
-                                <label>15. Residential Address</label>
+                                <label>15. {t('res_address')}</label>
                                 <textarea required rows="3" placeholder={t('door_no_street')}></textarea>
                             </div>
                             <div className="form-group full-width">
-                                <label>16. Office / Work Location Address</label>
-                                <textarea required rows="3" placeholder="Work Location Address"></textarea>
+                                <label>16. {t('office_work_address')}</label>
+                                <textarea required rows="3" placeholder={t('office_work_address')}></textarea>
                             </div>
                         </div>
                     </div>
 
                     {/* 5. UPLOAD & VERIFICATION */}
                     <div className="form-section">
-                        <h3>5. Upload & Verification Section (Portal Integration)</h3>
+                        <h3>5. {t('upload_verification')}</h3>
                         <div className="form-grid">
                             <div className="form-group file-upload">
-                                <label>✅ Company ID Card Upload</label>
+                                <label>{t('company_id_upload')}</label>
                                 <input type="file" required />
                             </div>
                             <div className="form-group file-upload">
-                                <label>✅ Employment Certificate / Offer Letter</label>
+                                <label>{t('emp_cert_upload')}</label>
                                 <input type="file" required />
                             </div>
                             <div className="form-group file-upload" style={{ gridColumn: '1 / -1' }}>
-                                <label>✅ Address Proof Upload (Aadhaar / Voter ID / Driving Licence / Passport)</label>
+                                <label>{t('address_proof_upload')}</label>
                                 <input type="file" required />
                             </div>
 
                             <div className="form-group photo-upload-container" style={{ gridColumn: '1 / -1', marginTop: '10px' }}>
-                                <label style={{ marginBottom: '15px' }}>✅ {t('applicant_photo')}</label>
+                                <label style={{ marginBottom: '15px' }}>{t('applicant_photo')}</label>
                                 <div className="photo-box-wrapper">
-                                    <span className="dim-label dim-width">Photo Width: 3.5cms</span>
+                                    <span className="dim-label dim-width">{t('photo_width_label')}</span>
                                     <div className="photo-box">
                                         {photo ? <img src={photo} alt="Preview" /> : <img src="photo-spec.png" alt="No photo" style={{ opacity: 0.2 }} />}
                                     </div>
-                                    <span className="dim-label dim-height">Photo Height: 4.5cms</span>
+                                    <span className="dim-label dim-height">{t('photo_height_label')}</span>
                                 </div>
                                 <button type="button" className="photo-action-btn" onClick={() => fileInputRef.current.click()}>
                                     {t('upload_capture_photo')} *
@@ -242,16 +240,16 @@ const NonGovEmpApplicationForm = () => {
 
                     {/* 6. DECLARATION */}
                     <div className="form-section declaration">
-                        <h3>6. Declaration by Applicant</h3>
+                        <h3>6. {t('declaration_applicant')}</h3>
                         <label className="checkbox-label">
                             <input type="checkbox" required />
-                            <span>I hereby declare that the particulars furnished above are true and correct. I request issuance of Non-Government Employee Bus Pass subject to APSRTC rules and regulations.</span>
+                            <span>{t('non_gov_declaration_text')}</span>
                         </label>
 
 
 
                         <div className="signature-box">
-                            <p>Signature of Applicant</p>
+                            <p>{t('signature_applicant')}</p>
                         </div>
                     </div>
 

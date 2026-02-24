@@ -150,9 +150,9 @@ const AboveSSCForm = () => {
                             <div className="form-group">
                                 <label>{t('ssc_board_type')}</label>
                                 <select name="sscBoard" value={formData.sscBoard} onChange={handleChange}>
-                                    <option>AP Board</option>
-                                    <option>CBSE</option>
-                                    <option>ICSE</option>
+                                    <option>{t('ssc_ap_board')}</option>
+                                    <option>{t('ssc_cbse')}</option>
+                                    <option>{t('ssc_icse')}</option>
                                 </select>
                             </div>
                             <div className="form-group">
@@ -175,7 +175,7 @@ const AboveSSCForm = () => {
                             </div>
                             <div className="form-group">
                                 <label>{t('course_year')}</label>
-                                <input type="text" name="course" value={formData.course} onChange={handleChange} placeholder="e.g. B.Tech 2nd Year" />
+                                <input type="text" name="course" value={formData.course} onChange={handleChange} placeholder={t('course_year_placeholder')} />
                             </div>
                         </div>
                     </div>

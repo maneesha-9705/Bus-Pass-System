@@ -89,26 +89,26 @@ const JournalistForm = () => {
                                 <input type="tel" required placeholder={t('enter_mobile')} />
                             </div>
                             <div className="form-group">
-                                <label>Email</label>
-                                <input type="email" required placeholder="Email" />
+                                <label>{t('email')}</label>
+                                <input type="email" required placeholder={t('email')} />
                             </div>
                         </div>
                     </div>
 
                     {/* JOURNALIST SPECIFIC DETAILS */}
                     <div className="form-section">
-                        <h3>Journalist Details</h3>
+                        <h3>{t('journalist_details')}</h3>
                         <div className="form-grid">
                             <div className="form-group full-width">
-                                <label>Organization / Media House Name</label>
+                                <label>{t('organization_name')}</label>
                                 <input type="text" required />
                             </div>
                             <div className="form-group">
-                                <label>Designation</label>
+                                <label>{t('designation')}</label>
                                 <input type="text" required />
                             </div>
                             <div className="form-group">
-                                <label>Accreditation Card Number</label>
+                                <label>{t('accreditation_no')}</label>
                                 <input type="text" required />
                             </div>
                         </div>
@@ -139,18 +139,18 @@ const JournalistForm = () => {
 
                     {/* DOCUMENT UPLOAD */}
                     <div className="form-section">
-                        <h3>Documents Upload</h3>
+                        <h3>{t('documents_upload')}</h3>
                         <div className="form-grid">
                             <div className="form-group file-upload" style={{ gridColumn: '1 / -1' }}>
-                                <label>Upload Accreditation Card Copy</label>
+                                <label>{t('upload_accreditation')}</label>
                                 <input type="file" required />
                             </div>
                             <div className="form-group file-upload">
-                                <label>Upload Address Proof</label>
+                                <label>{t('upload_address_proof')}</label>
                                 <input type="file" required />
                             </div>
                             <div className="form-group file-upload">
-                                <label>Upload Aadhaar Proof</label>
+                                <label>{t('upload_aadhar_proof')}</label>
                                 <input type="file" required />
                             </div>
                             <div className="form-group photo-upload-container" style={{ gridColumn: '1 / -1', marginTop: '10px' }}>
@@ -178,15 +178,15 @@ const JournalistForm = () => {
 
                     {/* PASS DETAILS */}
                     <div className="form-section">
-                        <h3>Pass Requirement</h3>
+                        <h3>{t('pass_requirement')}</h3>
                         <div className="form-grid">
                             <div className="form-group">
-                                <label>Pass Type</label>
+                                <label>{t('pass_type')}</label>
                                 <select required defaultValue="">
-                                    <option value="" disabled>Select Pass</option>
-                                    <option value="Ordinary">Ordinary</option>
-                                    <option value="Metro">Metro</option>
-                                    <option value="City">City</option>
+                                    <option value="" disabled>{t('select_pass')}</option>
+                                    <option value="Ordinary">{t('ordinary')}</option>
+                                    <option value="Metro">{t('metro')}</option>
+                                    <option value="City">{t('city')}</option>
                                 </select>
                             </div>
                             <div className="form-group">
@@ -198,12 +198,12 @@ const JournalistForm = () => {
                                 <input type="text" required placeholder={t('to_place')} />
                             </div>
                             <div className="form-group">
-                                <label>Validity</label>
+                                <label>{t('validity')}</label>
                                 <select required defaultValue="">
-                                    <option value="" disabled>Select Validity</option>
-                                    <option value="Monthly">Monthly</option>
-                                    <option value="Quarterly">Quarterly</option>
-                                    <option value="Half-Yearly">Half-Yearly</option>
+                                    <option value="" disabled>{t('select_validity')}</option>
+                                    <option value="Monthly">{t('monthly')}</option>
+                                    <option value="Quarterly">{t('quarterly')}</option>
+                                    <option value="Half-Yearly">{t('half_yearly')}</option>
                                 </select>
                             </div>
                         </div>
@@ -211,10 +211,10 @@ const JournalistForm = () => {
 
                     {/* DECLARATION */}
                     <div className="form-section declaration">
-                        <h3>Declaration</h3>
+                        <h3>{t('declaration')}</h3>
                         <label className="checkbox-label">
                             <input type="checkbox" required />
-                            <span>I hereby declare that the information provided is true and agree to APSRTC rules for Journalists.</span>
+                            <span>{t('declaration_text')}</span>
                         </label>
                     </div>
 

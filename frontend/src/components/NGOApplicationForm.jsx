@@ -89,26 +89,25 @@ const NGOApplicationForm = () => {
                                 <input type="tel" required placeholder={t('enter_mobile')} />
                             </div>
                             <div className="form-group">
-                                <label>Email</label>
-                                <input type="email" required placeholder="Email" />
+                                <label>{t('email')}</label>
+                                <input type="email" required placeholder={t('email')} />
                             </div>
                         </div>
                     </div>
 
-                    {/* NGO SPECIFIC DETAILS */}
                     <div className="form-section">
-                        <h3>NGO Details</h3>
+                        <h3>{t('ngo_details')}</h3>
                         <div className="form-grid">
                             <div className="form-group full-width">
-                                <label>NGO Organization Name</label>
+                                <label>{t('ngo_org_name')}</label>
                                 <input type="text" required />
                             </div>
                             <div className="form-group">
-                                <label>Registration Number</label>
+                                <label>{t('reg_no')}</label>
                                 <input type="text" required />
                             </div>
                             <div className="form-group">
-                                <label>Applicant Designation in NGO</label>
+                                <label>{t('applicant_designation_ngo')}</label>
                                 <input type="text" required />
                             </div>
                         </div>
@@ -139,28 +138,28 @@ const NGOApplicationForm = () => {
 
                     {/* DOCUMENT UPLOAD */}
                     <div className="form-section">
-                        <h3>Documents Upload</h3>
+                        <h3>{t('documents_upload')}</h3>
                         <div className="form-grid">
                             <div className="form-group file-upload" style={{ gridColumn: '1 / -1' }}>
-                                <label>Upload NGO ID / Registration Copy</label>
+                                <label>{t('upload_ngo_id_reg')}</label>
                                 <input type="file" required />
                             </div>
                             <div className="form-group file-upload">
-                                <label>Upload Address Proof</label>
+                                <label>{t('upload_address_proof')}</label>
                                 <input type="file" required />
                             </div>
                             <div className="form-group file-upload">
-                                <label>Upload Aadhaar Proof</label>
+                                <label>{t('upload_aadhar_proof')}</label>
                                 <input type="file" required />
                             </div>
                             <div className="form-group photo-upload-container" style={{ gridColumn: '1 / -1', marginTop: '10px' }}>
                                 <label style={{ marginBottom: '15px' }}>{t('applicant_photo')}</label>
                                 <div className="photo-box-wrapper">
-                                    <span className="dim-label dim-width">Photo Width: 3.5cms</span>
+                                    <span className="dim-label dim-width">{t('photo_width_label')}</span>
                                     <div className="photo-box">
                                         {photo ? <img src={photo} alt="Preview" /> : <img src="photo-spec.png" alt="No photo" style={{ opacity: 0.2 }} />}
                                     </div>
-                                    <span className="dim-label dim-height">Photo Height: 4.5cms</span>
+                                    <span className="dim-label dim-height">{t('photo_height_label')}</span>
                                 </div>
                                 <button type="button" className="photo-action-btn" onClick={() => fileInputRef.current.click()}>
                                     {t('upload_capture_photo')} *
@@ -178,15 +177,15 @@ const NGOApplicationForm = () => {
 
                     {/* PASS DETAILS */}
                     <div className="form-section">
-                        <h3>Pass Requirement</h3>
+                        <h3>{t('pass_requirement')}</h3>
                         <div className="form-grid">
                             <div className="form-group">
-                                <label>Pass Type</label>
+                                <label>{t('pass_type')}</label>
                                 <select required defaultValue="">
-                                    <option value="" disabled>Select Pass</option>
-                                    <option value="Ordinary">Ordinary</option>
-                                    <option value="Metro">Metro</option>
-                                    <option value="City">City</option>
+                                    <option value="" disabled>{t('select_pass')}</option>
+                                    <option value="Ordinary">{t('ordinary')}</option>
+                                    <option value="Metro">{t('metro')}</option>
+                                    <option value="City">{t('city')}</option>
                                 </select>
                             </div>
                             <div className="form-group">
@@ -198,12 +197,12 @@ const NGOApplicationForm = () => {
                                 <input type="text" required placeholder={t('to_place')} />
                             </div>
                             <div className="form-group">
-                                <label>Validity</label>
+                                <label>{t('validity')}</label>
                                 <select required defaultValue="">
-                                    <option value="" disabled>Select Validity</option>
-                                    <option value="Monthly">Monthly</option>
-                                    <option value="Quarterly">Quarterly</option>
-                                    <option value="Half-Yearly">Half-Yearly</option>
+                                    <option value="" disabled>{t('select_validity')}</option>
+                                    <option value="Monthly">{t('monthly')}</option>
+                                    <option value="Quarterly">{t('quarterly')}</option>
+                                    <option value="Half-Yearly">{t('half_yearly')}</option>
                                 </select>
                             </div>
                         </div>
@@ -211,10 +210,10 @@ const NGOApplicationForm = () => {
 
                     {/* DECLARATION */}
                     <div className="form-section declaration">
-                        <h3>Declaration</h3>
+                        <h3>{t('declaration')}</h3>
                         <label className="checkbox-label">
                             <input type="checkbox" required />
-                            <span>I hereby declare that the information provided is true and agree to APSRTC rules for NGOs.</span>
+                            <span>{t('ngo_declaration_text')}</span>
                         </label>
                     </div>
 

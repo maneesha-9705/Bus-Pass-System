@@ -153,7 +153,7 @@ const BelowSSCForm = () => {
                             </div>
                             <div className="form-group">
                                 <label>{t('course_year')}</label>
-                                <input type="text" name="class" value={formData.class} onChange={handleChange} placeholder="e.g. 10th Class" />
+                                <input type="text" name="class" value={formData.class} onChange={handleChange} placeholder={t('class_placeholder')} />
                             </div>
                         </div>
                     </div>

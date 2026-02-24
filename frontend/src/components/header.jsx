@@ -68,7 +68,9 @@ const Header = () => {
         <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle Theme">
           {theme === 'light' ? '🌙' : '☀️'}
         </button>
-        <div className="support-icon">🎧</div>
+        <div className="support-icon">
+          <img src="/support-icon.png" alt="Support" />
+        </div>
         <div>
           <p className="support-text">{t('support_text')}</p>
           <h2 className="support-number">0866 2570005</h2>

@@ -203,20 +203,20 @@ const NonGovEmpApplicationForm = () => {
                         <h3>5. Upload & Verification Section (Portal Integration)</h3>
                         <div className="form-grid">
                             <div className="form-group file-upload">
-                                <label>✅ Company ID Card Upload</label>
+                                <label>Company ID Card Upload</label>
                                 <input type="file" required />
                             </div>
                             <div className="form-group file-upload">
-                                <label>✅ Employment Certificate / Offer Letter</label>
+                                <label>Employment Certificate / Offer Letter</label>
                                 <input type="file" required />
                             </div>
                             <div className="form-group file-upload" style={{ gridColumn: '1 / -1' }}>
-                                <label>✅ Address Proof Upload (Aadhaar / Voter ID / Driving Licence / Passport)</label>
+                                <label>Address Proof Upload (Aadhaar / Voter ID / Driving Licence / Passport)</label>
                                 <input type="file" required />
                             </div>
 
                             <div className="form-group photo-upload-container" style={{ gridColumn: '1 / -1', marginTop: '10px' }}>
-                                <label style={{ marginBottom: '15px' }}>✅ Latest Photograph Upload</label>
+                                <label style={{ marginBottom: '15px' }}>Latest Photograph Upload</label>
                                 <div className="photo-box-wrapper">
                                     <span className="dim-label dim-width">Photo Width: 3.5cms</span>
                                     <div className="photo-box">

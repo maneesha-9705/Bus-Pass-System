@@ -28,9 +28,21 @@ app.get("/", (req, res) => {
 // Send Email Route
 app.post("/send-email", async (req, res) => {
   const { email } = req.body;
+  const currentMemory = otpStore[email];
+
+  if (currentMemory && currentMemory.lockedUntil && Date.now() < currentMemory.lockedUntil) {
+    return res.status(403).json({ message: "Account locked due to multiple failed attempts. Please try again after 60 minutes." });
+  }
 
   const otp = Math.floor(100000 + Math.random() * 900000);
-  otpStore[email] = otp; // store OTP with email as key
+
+  otpStore[email] = {
+    otp: otp,
+    expiresAt: Date.now() + 5 * 60 * 1000, // 5 minutes
+    createdAt: Date.now(),
+    attempts: 0
+  };
+
   try {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
@@ -43,19 +55,105 @@ app.post("/send-email", async (req, res) => {
 
   } catch (error) {
     console.log(error);
+    delete otpStore[email]; // clean up on error
     res.status(500).json({ message: "Email sending failed" });
   }
 });
+
+app.post("/resend-otp", async (req, res) => {
+  const { email } = req.body;
+  const currentMemory = otpStore[email];
+
+  if (currentMemory && currentMemory.lockedUntil && Date.now() < currentMemory.lockedUntil) {
+    return res.status(403).json({ message: "Account locked due to multiple failed attempts. Please try again after 60 minutes." });
+  }
+
+  if (currentMemory) {
+    // 5-minute cooldown check
+    if (currentMemory.resendCreatedAt && Date.now() < currentMemory.resendCreatedAt + 5 * 60 * 1000) {
+      return res.status(429).json({ message: "Please wait 05:00 before resending OTP." });
+    }
+
+    // 1-hour limit check (max 5 resends)
+    const oneHourMs = 60 * 60 * 1000;
+    if (currentMemory.firstResendAt) {
+      if (Date.now() < currentMemory.firstResendAt + oneHourMs) {
+        if (currentMemory.resendCount >= 5) {
+          return res.status(429).json({ message: "Maximum OTP limits reached. Please wait 1 hour." });
+        }
+      } else {
+        // Reset after 1 hour has passed since first resend
+        currentMemory.resendCount = 0;
+        currentMemory.firstResendAt = Date.now();
+      }
+    }
+  }
+
+  const otp = Math.floor(100000 + Math.random() * 900000);
+
+  // Track counts
+  const newResendCount = (currentMemory && currentMemory.resendCount) ? currentMemory.resendCount + 1 : 1;
+  const newFirstResendAt = (currentMemory && currentMemory.firstResendAt) ? currentMemory.firstResendAt : Date.now();
+
+  otpStore[email] = {
+    otp: otp,
+    expiresAt: Date.now() + 5 * 60 * 1000,
+    createdAt: currentMemory ? currentMemory.createdAt : Date.now(),
+    resendCreatedAt: Date.now(),
+    resendCount: newResendCount,
+    firstResendAt: newFirstResendAt,
+    attempts: 0
+  };
+
+  try {
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Your New OTP Code",
+      text: `Your new OTP is: ${otp}`
+    });
+    res.json({ message: "OTP resent successfully", otp });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Email sending failed" });
+  }
+});
+
 app.post("/verify-otp", (req, res) => {
   const { email, otp } = req.body;
+  const record = otpStore[email];
 
-  if (otpStore[email] && otpStore[email] == otp) {
+  if (record && record.lockedUntil && Date.now() < record.lockedUntil) {
+    return res.status(403).json({ message: "Account locked due to multiple failed attempts. Please try again after 60 minutes." });
+  }
+
+  if (!record || record.lockedUntil) {
+    return res.status(400).json({ message: "OTP not found or expired." });
+  }
+
+  // Check Expiry (5 Min)
+  if (Date.now() > record.expiresAt) {
+    delete otpStore[email];
+    return res.status(400).json({ message: "OTP Expired" });
+  }
+
+  // Check Attempts (Max 5)
+  if (record.attempts >= 4 && record.otp != otp) { // If it's the 5th attempt (0-indexed to 4) and wrong
+    otpStore[email] = {
+      lockedUntil: Date.now() + 60 * 60 * 1000 // lock for 60 minutes
+    };
+    return res.status(403).json({ message: "Max attempts reached. Account locked for 60 minutes." });
+  }
+
+  if (record.otp == otp) {
     delete otpStore[email]; // remove after success
     return res.json({ message: "OTP verified successfully" });
   } else {
-    return res.status(400).json({ message: "Invalid OTP" });
+    record.attempts += 1; // Increment attempts
+    return res.status(400).json({ message: `Invalid OTP. Attempts left: ${5 - record.attempts}` });
   }
 });
+
 console.log("EMAIL:", process.env.EMAIL_USER);
 console.log("PASS:", process.env.EMAIL_PASS);
 

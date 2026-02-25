@@ -19,9 +19,38 @@ function EmailOtp() {
   const navigate = useNavigate();
   const { t } = useLanguage();
 
+  const [timeLeft, setTimeLeft] = useState(0);
+  const [cooldownTime, setCooldownTime] = useState(0);
+  const [isExpired, setIsExpired] = useState(false);
+
   useEffect(() => {
-    // Carousel interval removed as there is only one image
-  }, []);
+    let timer;
+    if (otpSent && timeLeft > 0) {
+      timer = setInterval(() => {
+        setTimeLeft((prev) => prev - 1);
+      }, 1000);
+    } else if (timeLeft === 0 && otpSent) {
+      setIsExpired(true);
+    }
+
+    let cooldownTimer;
+    if (otpSent && cooldownTime > 0) {
+      cooldownTimer = setInterval(() => {
+        setCooldownTime((prev) => prev - 1);
+      }, 1000);
+    }
+
+    return () => {
+      if (timer) clearInterval(timer);
+      if (cooldownTimer) clearInterval(cooldownTimer);
+    };
+  }, [otpSent, timeLeft, cooldownTime]);
+
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
 
   const handleSendOtp = async () => {
     if (!email) {
@@ -45,6 +74,9 @@ function EmailOtp() {
 
       if (response.ok) {
         setOtpSent(true);
+        setTimeLeft(300); // 5 minutes
+        setCooldownTime(0); // 0 means no cooldown initially shown
+        setIsExpired(false);
         alert(t('otp_sent_alert'));
       } else {
         alert(data.message || t('otp_send_failed_alert'));
@@ -56,9 +88,42 @@ function EmailOtp() {
     }
   };
 
+  const handleResendOtp = async () => {
+    if (cooldownTime > 0) {
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/resend-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        setTimeLeft(300);
+        setCooldownTime(300);
+        setIsExpired(false);
+        alert("OTP Resent successfully");
+      } else {
+        alert(data.message || "Failed to resend OTP");
+      }
+
+    } catch (err) {
+      console.error("Error resending OTP:", err);
+      alert(t('server_error_alert'));
+    }
+  };
+
   const handleVerify = async () => {
     if (!otp) {
       alert(t('enter_otp_alert'));
+      return;
+    }
+
+    if (isExpired) {
+      alert("OTP Expired");
       return;
     }
 
@@ -113,12 +178,16 @@ function EmailOtp() {
               <button
                 className={`role-tab ${loginRole === 'student' ? 'active' : ''}`}
                 onClick={() => setLoginRole('student')}
+                disabled={otpSent}
+                style={{ cursor: otpSent ? 'not-allowed' : 'pointer', opacity: otpSent ? 0.7 : 1 }}
               >
                 {t('as_user')}
               </button>
               <button
                 className={`role-tab ${loginRole === 'admin' ? 'active' : ''}`}
                 onClick={() => setLoginRole('admin')}
+                disabled={otpSent}
+                style={{ cursor: otpSent ? 'not-allowed' : 'pointer', opacity: otpSent ? 0.7 : 1 }}
               >
                 {t('as_admin')}
               </button>
@@ -136,13 +205,20 @@ function EmailOtp() {
                   onChange={(e) => setEmail(e.target.value)}
                   className="input-field"
                   placeholder={loginMethod === 'email' ? "example@email.com" : "9876543210"}
+                  disabled={otpSent}
                 />
               </div>
             </div>
 
             {otpSent && (
               <div className="input-group mt-3">
-                <span className="input-label-text">OTP</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span className="input-label-text">OTP</span>
+                  <span style={{ fontSize: '0.85rem', color: isExpired ? 'red' : '#555' }}>
+                    {isExpired ? "Expired" : `Valid for: ${formatTime(timeLeft)}`}
+                  </span>
+                </div>
+
                 <div className="input-with-icon">
                   <span className="input-icon">🔑</span>
                   <input
@@ -151,7 +227,25 @@ function EmailOtp() {
                     onChange={(e) => setOtp(e.target.value)}
                     className="input-field"
                     placeholder="Enter OTP"
+                    disabled={isExpired}
                   />
+                </div>
+
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '8px' }}>
+                  <button
+                    onClick={handleResendOtp}
+                    disabled={cooldownTime > 0}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: cooldownTime > 0 ? '#aaa' : '#0056b3',
+                      cursor: cooldownTime > 0 ? 'not-allowed' : 'pointer',
+                      fontSize: '0.9rem',
+                      textDecoration: 'underline'
+                    }}
+                  >
+                    {cooldownTime > 0 ? `Resend OTP in ${cooldownTime}s` : "Resend OTP"}
+                  </button>
                 </div>
               </div>
             )}
@@ -159,7 +253,7 @@ function EmailOtp() {
 
 
             {otpSent ? (
-              <button className="btn submit-btn" onClick={handleVerify}>
+              <button className="btn submit-btn" onClick={handleVerify} disabled={isExpired} style={{ opacity: isExpired ? 0.6 : 1 }}>
                 {t('verify')}
               </button>
             ) : (

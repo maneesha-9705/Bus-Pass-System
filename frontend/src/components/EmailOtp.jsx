@@ -156,16 +156,7 @@ function EmailOtp() {
               </div>
             )}
 
-            <div className="cloudflare-mock">
-              <div className="cf-left">
-                <span className="cf-check">✔️</span>
-                <span className="cf-text">{t('success_cloudflare')}</span>
-              </div>
-              <div className="cf-right">
-                <span className="cf-logo-text">CLOUDFLARE</span>
-                <span className="cf-links">Privacy · Terms</span>
-              </div>
-            </div>
+
 
             {otpSent ? (
               <button className="btn submit-btn" onClick={handleVerify}>

@@ -1,8 +1,8 @@
 export const translations = {
     en: {
         // Header
-        telugu_title: "ఆంధ్రప్రదేశ్ రాష్ట్ర రోడ్డు రవాణా సంస్థ",
-        english_title: "Andhra Pradesh State Road Transport Corporation",
+        telugu_title: "ఆంధ్రప్రదేశ్ డిజిటల్ బస్సు పాస్ పోర్టల్",
+        english_title: "Andhra Pradesh Digital Bus Pass Portal",
         support_text: "(24/7 Customer Support)",
 
         // OTP / Login
@@ -18,6 +18,15 @@ export const translations = {
         server_error_alert: "Server not connected",
         enter_otp_alert: "Enter OTP",
         otp_verify_failed_alert: "OTP verification failed",
+        as_user: "As Student",
+        as_admin: "Administrator",
+        login_with: "Login with:",
+        email: "Email",
+        mobile: "Mobile",
+        problems_logging_in: "Problems logging in?",
+        digital_bus_pass_system: "Andhra Pradesh Digital Bus Pass Portal",
+        apstrc_initiative: "An initiative of APSRTC",
+        success_cloudflare: "Success!",
 
         // Home
         welcome_title: "Welcome to Digital Bus Pass System",
@@ -41,6 +50,7 @@ export const translations = {
         click_to_view_download: "Click to view and download applications",
         ngo_application: "NGO Application",
         journalist_form: "Journalist Form",
+        others_form: "Others",
         my_pass: "My Pass",
         view_active_passes: "View active passes",
         renewal_pass: "Renewal Pass",
@@ -306,7 +316,7 @@ export const translations = {
         update_details_btn: "Update Details",
 
         // Footer
-        digital_bus_pass_system: "Digital Bus Pass System",
+        digital_bus_pass_system: "Andhra Pradesh Digital Bus Pass Portal",
         all_rights_reserved: "All rights reserved.",
         about_us: "About Us",
         contact: "Contact",
@@ -314,8 +324,8 @@ export const translations = {
     },
     te: {
         // Header
-        telugu_title: "ఆంధ్రప్రదేశ్ రాష్ట్ర రోడ్డు రవాణా సంస్థ",
-        english_title: "ఆంధ్రప్రదేశ్ రాష్ట్ర రోడ్డు రవాణా సంస్థ",
+        telugu_title: "ఆంధ్రప్రదేశ్ డిజిటల్ బస్సు పాస్ పోర్టల్",
+        english_title: "Andhra Pradesh Digital Bus Pass Portal",
         support_text: "(24/7 కస్టమర్ సపోర్ట్)",
 
         // OTP / Login
@@ -331,6 +341,15 @@ export const translations = {
         server_error_alert: "సర్వర్ కనెక్ట్ కాలేదు",
         enter_otp_alert: "OTP నమోదు చేయండి",
         otp_verify_failed_alert: "OTP ధృవీకరణ విఫలమైంది",
+        as_user: "విద్యార్థిగా",
+        as_admin: "అడ్మిన్‌గా / ట్రైనర్‌గా",
+        login_with: "దీనిలో లాగిన్ చేయండి:",
+        email: "ఈమెయిల్",
+        mobile: "మొబైల్",
+        problems_logging_in: "లాగిన్ చేయడంలో సమస్యలు ఉన్నాయా?",
+        digital_bus_pass_system: "డిజిటల్ బస్సు పాస్ సిస్టమ్",
+        apstrc_initiative: "APSRTC వారి చొరవ",
+        success_cloudflare: "విజయం!",
 
         // Home
         welcome_title: "డిజిటల్ బస్సు పాస్ వ్యవస్థకు స్వాగతం",
@@ -354,6 +373,7 @@ export const translations = {
         click_to_view_download: "అప్లికేషన్‌లను వీక్షించడానికి మరియు డౌన్‌లోడ్ చేయడానికి క్లిక్ చేయండి",
         ngo_application: "NGO దరఖాస్తు",
         journalist_form: "జర్నలిస్ట్ ఫారమ్",
+        others_form: "ఇతరులు",
         my_pass: "నా పాస్",
         view_active_passes: "క్రియాశీల పాస్‌లను వీక్షించండి",
         renewal_pass: "పునరుద్ధరణ పాస్",

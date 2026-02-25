@@ -11,6 +11,7 @@ app.use(cors());
 
 const PORT = 5000;
 const otpStore = {};
+
 // Create transporter
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -28,30 +29,74 @@ app.get("/", (req, res) => {
 // Send Email Route
 app.post("/send-email", async (req, res) => {
   const { email } = req.body;
+<<<<<<< HEAD
   const currentMemory = otpStore[email];
 
   if (currentMemory && currentMemory.lockedUntil && Date.now() < currentMemory.lockedUntil) {
     return res.status(403).json({ message: "Account locked due to multiple failed attempts. Please try again after 60 minutes." });
   }
+=======
+  const now = Date.now();
+>>>>>>> 7610c3e2af957f2d5a7ed7b06ad2032a9dccd585
 
+  // Initialize store for new users
+  if (!otpStore[email]) {
+    otpStore[email] = {
+      otp: null,
+      timestamp: 0,
+      resendAttempts: 0,
+      lastResendTime: 0
+    };
+  }
+
+  const userData = otpStore[email];
+
+  // 1. Resend Cooldown Check (30 seconds)
+  const cooldownPeriod = 30 * 1000;
+  if (userData.lastResendTime && (now - userData.lastResendTime < cooldownPeriod)) {
+    const remaining = Math.ceil((cooldownPeriod - (now - userData.lastResendTime)) / 1000);
+    return res.status(429).json({
+      message: `Please wait ${remaining} seconds before resending.`
+    });
+  }
+
+  // 2. Max Resend Attempts Check (3 attempts)
+  if (userData.resendAttempts >= 3) {
+    return res.status(403).json({
+      message: "Maximum resend attempts reached. Please try again later."
+    });
+  }
+
+  // 3. Generate New OTP (Old OTP is automatically invalidated)
   const otp = Math.floor(100000 + Math.random() * 900000);
 
+<<<<<<< HEAD
   otpStore[email] = {
     otp: otp,
     expiresAt: Date.now() + 5 * 60 * 1000, // 5 minutes
     createdAt: Date.now(),
     attempts: 0
   };
+=======
+  // Update data
+  userData.otp = otp;
+  userData.timestamp = now;
+  userData.lastResendTime = now;
+  userData.resendAttempts += 1;
+>>>>>>> 7610c3e2af957f2d5a7ed7b06ad2032a9dccd585
 
   try {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: email,
       subject: "Your OTP Code",
-      text: `Your OTP is: ${otp}`
+      text: `Your OTP is: ${otp}. It will expire in 2 minutes.`
     });
 
-    res.json({ message: "Email sent successfully", otp });
+    res.json({
+      message: "Email sent successfully",
+      resendAttempts: userData.resendAttempts
+    });
 
   } catch (error) {
     console.log(error);
@@ -60,6 +105,7 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 app.post("/resend-otp", async (req, res) => {
   const { email } = req.body;
   const currentMemory = otpStore[email];
@@ -147,6 +193,29 @@ app.post("/verify-otp", (req, res) => {
 
   if (record.otp == otp) {
     delete otpStore[email]; // remove after success
+=======
+// Verify OTP Route
+app.post("/verify-otp", (req, res) => {
+  const { email, otp } = req.body;
+  const now = Date.now();
+
+  const userData = otpStore[email];
+
+  if (!userData || !userData.otp) {
+    return res.status(400).json({ message: "No OTP found for this email" });
+  }
+
+  // 1. Expiry Check (2 minutes)
+  const expiryPeriod = 2 * 60 * 1000;
+  if (now - userData.timestamp > expiryPeriod) {
+    delete otpStore[email]; // Invalidate on expiry
+    return res.status(410).json({ message: "OTP has expired" });
+  }
+
+  // 2. Verification Check
+  if (userData.otp == otp) {
+    delete otpStore[email]; // Clear store on success
+>>>>>>> 7610c3e2af957f2d5a7ed7b06ad2032a9dccd585
     return res.json({ message: "OTP verified successfully" });
   } else {
     record.attempts += 1; // Increment attempts

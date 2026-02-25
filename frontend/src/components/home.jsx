@@ -145,6 +145,11 @@ const Home = () => {
             <h3>{t('renewal_pass')}</h3>
             <p>{t('below_ssc')} & {t('above_ssc')}</p>
           </div>
+          <div className="action-card" onClick={() => window.open('/Eligibility_Check and Fare_Details.pdf', '_blank')}>
+            <div className="icon"><span style={{ fontSize: '3rem', color: '#B31B1B' }}>ⓘ</span></div>
+            <h3>KNOW MORE</h3>
+            <p>Read General Bus Pass Info</p>
+          </div>
         </div>
       </div>
 
